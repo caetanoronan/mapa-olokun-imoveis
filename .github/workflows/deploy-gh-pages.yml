@@ -1,0 +1,27 @@
+name: Deploy map to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Prepare public directory
+        run: |
+          mkdir -p public
+          # Copia o HTML do mapa principal. Ajuste nomes se necessário.
+          if [ -f "mapa_imobiliaria_automatico.html" ]; then cp mapa_imobiliaria_automatico.html public/; fi
+          if [ -f "mapa_imobiliaria.html" ]; then cp mapa_imobiliaria.html public/; fi
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
