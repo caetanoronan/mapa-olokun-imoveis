@@ -8,9 +8,6 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      console.log('Node version:', process.versions.node);
-      console.log('NPM version:', process.versions.npm);
-    </script>
+    <!-- No Node logs in browser; `process` is undefined in client-side. Removed to avoid ReferenceError. -->
   </body>
 </html>
