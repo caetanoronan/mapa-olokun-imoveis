@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_67843c55d3b3b752d49c20d2604c011f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <style>
+            .map-title {
+                position: absolute;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 9999;
+                background-color: rgba(255, 255, 255, 0.85);
+                padding: 6px 12px;
+                font-size: 18px;
+                font-weight: bold;
+                border-radius: 5px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            }
+        </style>
+        <div class="map-title">Olokun Imóveis</div>
+        
+    
+        <div style="position: absolute; bottom: 10px; right: 10px; z-index:9999; background:white; padding:8px 12px; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,0.15); font-size:13px">
+            <b>Legenda</b>
+            <ul style='padding-left:0;margin:6px 0 0 0'><li style='list-style:none;margin-bottom:6px;display:flex;align-items:center;'><span style='display:inline-block;width:14px;height:14px;background-color:blue;border-radius:50%;margin-right:8px;box-shadow:0 1px 2px rgba(0,0,0,.25)'></span>Casa</li><li style='list-style:none;margin-bottom:6px;display:flex;align-items:center;'><span style='display:inline-block;width:14px;height:14px;background-color:green;border-radius:50%;margin-right:8px;box-shadow:0 1px 2px rgba(0,0,0,.25)'></span>Apartamento</li><li style='list-style:none;margin-bottom:6px;display:flex;align-items:center;'><span style='display:inline-block;width:14px;height:14px;background-color:orange;border-radius:50%;margin-right:8px;box-shadow:0 1px 2px rgba(0,0,0,.25)'></span>Sala Comercial</li><li style='list-style:none;margin-bottom:6px;display:flex;align-items:center;'><span style='display:inline-block;width:14px;height:14px;background-color:red;border-radius:50%;margin-right:8px;box-shadow:0 1px 2px rgba(0,0,0,.25)'></span>Terreno</li><li style='list-style:none;margin-bottom:6px;display:flex;align-items:center;'><span style='display:inline-block;width:14px;height:14px;background-color:purple;border-radius:50%;margin-right:8px;box-shadow:0 1px 2px rgba(0,0,0,.25)'></span>Galpão Industrial</li></ul>
+        </div>
+        
+    
+            <div class="folium-map" id="map_67843c55d3b3b752d49c20d2604c011f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_67843c55d3b3b752d49c20d2604c011f = L.map(
+                "map_67843c55d3b3b752d49c20d2604c011f",
+                {
+                    center: [-27.5954, -48.548],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_778f3d0902bc6ad5dd74be3630a0057c = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 10,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_778f3d0902bc6ad5dd74be3630a0057c.addTo(map_67843c55d3b3b752d49c20d2604c011f);
+        
+    
+            var marker_d56739dc26567cbb125b701ccbae8449 = L.marker(
+                [-27.4305001, -48.4659858],
+                {
+}
+            ).addTo(map_67843c55d3b3b752d49c20d2604c011f);
+        
+    
+            var icon_8e080ebd378738a1c583f3146fde1408 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7585d01dc077f21cb6b2bd655e4ce8aa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e25669b67aa81c761f1612eaa5839986 = $(`<div id="html_e25669b67aa81c761f1612eaa5839986" style="width: 100.0%; height: 100.0%;">                 <b>Casa</b><br>                 <b>Endereço:</b> Rua das Flores, 100<br>                 <b>Área:</b> 200m²<br>                 <b>Quartos:</b> 3<br>                 <b>Banheiros:</b> 2<br>                 <b>Vagas:</b> 2<br>                 <b>Valor:</b> R$ 550.000<br>                 <a href="https://exemplo.com/foto1.jpg" target="_blank">📸 Ver Fotos</a>                 </div>`)[0];
+                popup_7585d01dc077f21cb6b2bd655e4ce8aa.setContent(html_e25669b67aa81c761f1612eaa5839986);
+            
+        
+
+        marker_d56739dc26567cbb125b701ccbae8449.bindPopup(popup_7585d01dc077f21cb6b2bd655e4ce8aa)
+        ;
+
+        
+    
+    
+            marker_d56739dc26567cbb125b701ccbae8449.bindTooltip(
+                `<div>
+                     Casa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d56739dc26567cbb125b701ccbae8449.setIcon(icon_8e080ebd378738a1c583f3146fde1408);
+            
+    
+            var marker_6cee2b024c4dd60a83104a5fcda5232c = L.marker(
+                [-27.6023224, -48.6026133],
+                {
+}
+            ).addTo(map_67843c55d3b3b752d49c20d2604c011f);
+        
+    
+            var icon_f0cef3eb2c2d95a0db1900e22338fd5e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d8f1df427fa0ec2b2de98860e00a14eb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c60260a1fccbbf514fb368810c754ed8 = $(`<div id="html_c60260a1fccbbf514fb368810c754ed8" style="width: 100.0%; height: 100.0%;">                 <b>Apartamento</b><br>                 <b>Endereço:</b> Avenida Beira Mar, 500<br>                 <b>Área:</b> 70m²<br>                 <b>Quartos:</b> 2<br>                 <b>Banheiros:</b> 1<br>                 <b>Vagas:</b> 1<br>                 <b>Valor:</b> R$ 300.000<br>                 <a href="https://exemplo.com/foto2.jpg" target="_blank">📸 Ver Fotos</a>                 </div>`)[0];
+                popup_d8f1df427fa0ec2b2de98860e00a14eb.setContent(html_c60260a1fccbbf514fb368810c754ed8);
+            
+        
+
+        marker_6cee2b024c4dd60a83104a5fcda5232c.bindPopup(popup_d8f1df427fa0ec2b2de98860e00a14eb)
+        ;
+
+        
+    
+    
+            marker_6cee2b024c4dd60a83104a5fcda5232c.bindTooltip(
+                `<div>
+                     Apartamento
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6cee2b024c4dd60a83104a5fcda5232c.setIcon(icon_f0cef3eb2c2d95a0db1900e22338fd5e);
+            
+    
+            var marker_668a33ded4a6c08c1fa46132e1fdd7e2 = L.marker(
+                [-27.5075896, -48.5198277],
+                {
+}
+            ).addTo(map_67843c55d3b3b752d49c20d2604c011f);
+        
+    
+            var icon_d806ca155ea8fb3db82b12bba303dc55 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6c605e93be9da068ba53585c64a7111f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1a9d2bf56157a5bf374d26709ea2bbd9 = $(`<div id="html_1a9d2bf56157a5bf374d26709ea2bbd9" style="width: 100.0%; height: 100.0%;">                 <b>Sala Comercial</b><br>                 <b>Endereço:</b> Rua XV de Novembro, 20<br>                 <b>Área:</b> 40m²<br>                 <b>Quartos:</b> 0<br>                 <b>Banheiros:</b> 1<br>                 <b>Vagas:</b> 0<br>                 <b>Valor:</b> R$ 1.200/mês<br>                 <a href="https://exemplo.com/foto3.jpg" target="_blank">📸 Ver Fotos</a>                 </div>`)[0];
+                popup_6c605e93be9da068ba53585c64a7111f.setContent(html_1a9d2bf56157a5bf374d26709ea2bbd9);
+            
+        
+
+        marker_668a33ded4a6c08c1fa46132e1fdd7e2.bindPopup(popup_6c605e93be9da068ba53585c64a7111f)
+        ;
+
+        
+    
+    
+            marker_668a33ded4a6c08c1fa46132e1fdd7e2.bindTooltip(
+                `<div>
+                     Sala Comercial
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_668a33ded4a6c08c1fa46132e1fdd7e2.setIcon(icon_d806ca155ea8fb3db82b12bba303dc55);
+            
+    
+            var marker_1530c95891203aed13ce89e22876dd47 = L.marker(
+                [-27.5436337, -48.7050149],
+                {
+}
+            ).addTo(map_67843c55d3b3b752d49c20d2604c011f);
+        
+    
+            var icon_f6fd6fa607dab5a2209d85681d0a0c8b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7f4b6827d3d5aa4ed486afd70316e41d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_78ab8e99738731b7c828cfe04ccebd5a = $(`<div id="html_78ab8e99738731b7c828cfe04ccebd5a" style="width: 100.0%; height: 100.0%;">                 <b>Terreno</b><br>                 <b>Endereço:</b> Estrada Geral, s/n<br>                 <b>Área:</b> 500m²<br>                 <b>Quartos:</b> 0<br>                 <b>Banheiros:</b> 0<br>                 <b>Vagas:</b> 0<br>                 <b>Valor:</b> R$ 150.000<br>                 <a href="https://exemplo.com/foto4.jpg" target="_blank">📸 Ver Fotos</a>                 </div>`)[0];
+                popup_7f4b6827d3d5aa4ed486afd70316e41d.setContent(html_78ab8e99738731b7c828cfe04ccebd5a);
+            
+        
+
+        marker_1530c95891203aed13ce89e22876dd47.bindPopup(popup_7f4b6827d3d5aa4ed486afd70316e41d)
+        ;
+
+        
+    
+    
+            marker_1530c95891203aed13ce89e22876dd47.bindTooltip(
+                `<div>
+                     Terreno
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1530c95891203aed13ce89e22876dd47.setIcon(icon_f6fd6fa607dab5a2209d85681d0a0c8b);
+            
+    
+            var marker_009f427cec43f54587c536172ed24ed7 = L.marker(
+                [-27.5401647, -48.5054413],
+                {
+}
+            ).addTo(map_67843c55d3b3b752d49c20d2604c011f);
+        
+    
+            var icon_4acacd7b9019e3a518f8415b8c09b6d5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f33ba33d035af931a4c8740b1c78ed4e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_499ac45dd8ccd6c25d8de5862e753815 = $(`<div id="html_499ac45dd8ccd6c25d8de5862e753815" style="width: 100.0%; height: 100.0%;">                 <b>Galpão Industrial</b><br>                 <b>Endereço:</b> Rodovia SC-401, km 5<br>                 <b>Área:</b> 600m²<br>                 <b>Quartos:</b> 0<br>                 <b>Banheiros:</b> 2<br>                 <b>Vagas:</b> 5<br>                 <b>Valor:</b> R$ 850.000<br>                 <a href="https://exemplo.com/foto5.jpg" target="_blank">📸 Ver Fotos</a>                 </div>`)[0];
+                popup_f33ba33d035af931a4c8740b1c78ed4e.setContent(html_499ac45dd8ccd6c25d8de5862e753815);
+            
+        
+
+        marker_009f427cec43f54587c536172ed24ed7.bindPopup(popup_f33ba33d035af931a4c8740b1c78ed4e)
+        ;
+
+        
+    
+    
+            marker_009f427cec43f54587c536172ed24ed7.bindTooltip(
+                `<div>
+                     Galpão Industrial
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_009f427cec43f54587c536172ed24ed7.setIcon(icon_4acacd7b9019e3a518f8415b8c09b6d5);
+            
+</script>
+</html>
