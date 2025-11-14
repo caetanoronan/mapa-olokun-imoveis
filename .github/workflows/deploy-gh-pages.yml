@@ -19,6 +19,8 @@ jobs:
           # Copia o HTML do mapa principal. Ajuste nomes se necessário.
           if [ -f "mapa_imobiliaria_automatico.html" ]; then cp mapa_imobiliaria_automatico.html public/; fi
           if [ -f "mapa_imobiliaria.html" ]; then cp mapa_imobiliaria.html public/; fi
+          # Garantir um index.html para evitar 404 em GitHub Pages (usa o mapa automático como index)
+          if [ -f "public/mapa_imobiliaria_automatico.html" ]; then cp public/mapa_imobiliaria_automatico.html public/index.html; fi
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
