@@ -1,0 +1,6 @@
+tipo,endereco,area,quartos,banheiros,vagas,valor,fotos,descricao,lat,lon
+Casa,"Rua das Flores, 100, Florianópolis",200m²,3,2,2,R$ 550.000,https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400,Linda casa com jardim e garagem,-27.4305001,-48.4659858
+Apartamento,"Avenida Beira Mar, 500, Florianópolis",70m²,2,1,1,R$ 300.000,https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400,Apartamento com vista para o mar,-27.6023224,-48.6026133
+Sala Comercial,"Rua XV de Novembro, 20, Centro, Florianópolis",40m²,0,1,0,R$ 1.200/mês,https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400,Sala comercial bem localizada,-27.5206258,-48.7637506
+Terreno,"Estrada Geral, Ratones, Florianópolis",500m²,0,0,0,R$ 150.000,https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400,Terreno plano para construção,-27.5954,-48.548
+Galpão Industrial,"Rodovia SC-401, km 5, Florianópolis",600m²,0,2,5,R$ 850.000,https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400,Galpão industrial com doca,-27.5401647,-48.5054413
