@@ -1,0 +1,14 @@
+{
+  "name": "mapa-olokun-imoveis",
+  "version": "1.0.0",
+  "description": "Mapa interativo de imóveis Olokun",
+  "main": "index.html",
+  "scripts": {
+    "dev": "echo 'No dev script needed for static site'",
+    "build": "echo 'No build needed for static site'",
+    "start": "echo 'Static site served by Vercel'"
+  },
+  "keywords": ["mapa", "imoveis", "folium", "leaflet"],
+  "author": "Caetano Ronan",
+  "license": "MIT"
+}
