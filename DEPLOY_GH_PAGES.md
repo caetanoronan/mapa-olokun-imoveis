@@ -29,3 +29,4 @@ Observações:
 
 - Se você prefere que os arquivos fiquem em `docs/` em vez de `gh-pages`, posso adaptar o workflow para copiar os arquivos para `docs/` e publicar a partir da branch `main`.
 - Se quiser, eu também posso fazer o commit das mudanças locais e empurrar para o remoto (mas preciso das credenciais/configuração remota do git que você executará no seu terminal). 
+\nRedeploy triggered: 2025-11-14T17:01:18.9891288-03:00
