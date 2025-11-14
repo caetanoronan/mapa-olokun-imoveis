@@ -19,17 +19,18 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Prepare public directory
+      - name: Prepare docs directory
         run: |
-          mkdir -p public
+          mkdir -p docs
           # Copia o HTML do mapa principal. Ajuste nomes se necessário.
-          if [ -f "mapa_imobiliaria_automatico.html" ]; then cp mapa_imobiliaria_automatico.html public/; fi
-          if [ -f "mapa_imobiliaria.html" ]; then cp mapa_imobiliaria.html public/; fi
+          if [ -f "mapa_imobiliaria_automatico.html" ]; then cp mapa_imobiliaria_automatico.html docs/; fi
+          if [ -f "mapa_imobiliaria.html" ]; then cp mapa_imobiliaria.html docs/; fi
           # Garantir um index.html para evitar 404 em GitHub Pages (usa o mapa automático como index)
-          if [ -f "public/mapa_imobiliaria_automatico.html" ]; then cp public/mapa_imobiliaria_automatico.html public/index.html; fi
+          if [ -f "docs/mapa_imobiliaria_automatico.html" ]; then cp docs/mapa_imobiliaria_automatico.html docs/index.html; fi
 
-      - name: Deploy to gh-pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./docs
+          destination_dir: .
