@@ -14,6 +14,7 @@ L.Icon.Default.mergeOptions({
 export default function MapView({ properties }) {
   const center = useMemo(() => ({ lat: -27.5954, lng: -48.5480 }), []); // Florianópolis
   const [isLegendExpanded, setIsLegendExpanded] = useState(true);
+  const [tilesLoaded, setTilesLoaded] = useState(false);
 
   // Build a custom color icon per type using DivIcon + CSS classes
   const iconsByType = useMemo(() => {
@@ -74,6 +75,10 @@ export default function MapView({ properties }) {
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        eventHandlers={{
+          tileload: () => setTilesLoaded(true),
+          tileerror: () => setTilesLoaded(false),
+        }}
       />
       <div className="legend">
         <div className="legend__header">
@@ -133,6 +138,7 @@ export default function MapView({ properties }) {
           </Marker>
         ))}
       </MarkerClusterGroup>
+      <div className="debug-overlay">Marcadores: {properties.length} • Tiles: {tilesLoaded ? 'OK' : 'Carregando'}</div>
     </MapContainer>
   );
 }
