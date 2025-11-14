@@ -1,0 +1,86 @@
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color: #222; }
+
+:root {
+  /* ColorBrewer BuGn (n=3) */
+  --bu-light: #e5f5f9;
+  --bu-mid: #99d8c9;
+  --bu-dark: #2ca25f;
+}
+
+.app { display: flex; flex-direction: column; min-height: 100%; }
+.app__header { padding: 16px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); background: linear-gradient(90deg, var(--bu-light), var(--bu-mid), var(--bu-dark)); color: #063; }
+.app__header h1 { margin: 0 0 4px; font-size: 22px; color: #083; }
+.app__header p { margin: 0; color: rgba(0,0,0,0.6); font-size: 14px; }
+
+.app__content { flex: 1; display: grid; grid-template-columns: 300px 1fr; min-height: 0; }
+.sidebar { border-right: 1px solid #eee; padding: 16px; background: #fafafa; overflow: auto; }
+.main { position: relative; }
+.main > * { position: absolute; inset: 0; }
+
+.app__footer { padding: 8px 16px; border-top: 1px solid #eee; background: #fff; color: #666; font-size: 12px; }
+
+.filters h2 { margin: 0 0 12px; font-size: 16px; }
+.filters__section { margin-bottom: 16px; }
+.filters__section h3 { margin: 0 0 8px; font-size: 14px; color: #333; }
+.filters__list { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.filters__checkbox { display: flex; gap: 8px; align-items: center; font-size: 14px; }
+.filters__price { display: flex; gap: 8px; align-items: center; }
+.filters__price input { width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; }
+.filters__price button { padding: 6px 10px; border: 1px solid var(--bu-dark); color: white; background: var(--bu-dark); border-radius: 6px; cursor: pointer; }
+.filters__actions { display: flex; justify-content: space-between; }
+.btn { padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+.btn--ghost { background: white; border: 1px solid rgba(0,0,0,0.08); color: #083; }
+
+.popup { display: grid; grid-template-columns: 130px 1fr; gap: 10px; max-width: 360px; }
+.popup__img { width: 130px; height: 90px; object-fit: cover; border-radius: 6px; border: 1px solid #eee; }
+.popup__title { margin: 0; font-size: 16px; }
+.popup__subtitle { margin: 4px 0 8px; color: #555; font-size: 12px; }
+.popup__list { margin: 0 0 8px; padding-left: 16px; font-size: 13px; }
+.popup__links { display: flex; gap: 10px; }
+.popup__links a { font-size: 13px; color: var(--bu-dark); text-decoration: none; }
+
+@media (max-width: 860px) {
+  .app__content { grid-template-columns: 1fr; }
+  .sidebar { order: 2; }
+  .main { order: 1; min-height: 60vh; }
+}
+
+/* Custom map marker icons (color by type) */
+.cm-wrapper { line-height: 0; }
+.cm {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,0.12);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+.cm { color: white; }
+.cm--default { background: var(--bu-mid); }
+.cm--casa { background: var(--bu-dark); }
+.cm--apartamento { background: #1f7a4a; }
+.cm--sala { background: #196f3d; }
+.cm--terreno { background: #66bb6a; }
+.cm--galpao { background: #2e8b57; }
+
+/* Legend overlay */
+.legend {
+.legend {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,255,250,0.9));
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  z-index: 500;
+}
+.legend h4 { margin: 0 0 6px; font-size: 13px; }
+.legend__header { display: flex; justify-content: space-between; align-items: center; }
+.legend__toggle { background: none; border: none; font-size: 16px; color: var(--bu-dark); cursor: pointer; padding: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.legend__toggle:hover { background: rgba(0,0,0,0.05); }
+.legend ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.legend li { display: flex; align-items: center; gap: 6px; }
+.legend__icon { display: inline-block; width: 18px; height: 18px; border: 2px solid rgba(0,0,0,0.08); border-radius: 50%; }
