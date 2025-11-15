@@ -103,7 +103,9 @@
 
     <script>
         // Inicializar mapa
+        console.log('Inicializando mapa...');
         var map = L.map('map').setView([-27.5954, -48.5480], 12);
+        console.log('Mapa criado:', map);
 
         // Adicionar tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -188,6 +190,8 @@
             }
         ];
 
+        console.log('Dados dos imóveis:', imoveis);
+
         // Criar camadas para cada tipo
         var layers = {
             casas: L.layerGroup(),
@@ -197,11 +201,16 @@
             galpoes: L.layerGroup()
         };
 
+        console.log('Camadas criadas:', layers);
+
         // Adicionar marcadores
-        imoveis.forEach(function(imovel) {
+        imoveis.forEach(function(imovel, index) {
+            console.log('Processando imóvel:', index, imovel.tipo);
             var tipoLayer = imovel.tipo.toLowerCase().replace(' ', '').replace('ã', 'a');
             if (tipoLayer === 'galpãoindustrial') tipoLayer = 'galpoes';
             if (tipoLayer === 'salacomercial') tipoLayer = 'comerciais';
+
+            console.log('Tipo de layer:', tipoLayer);
 
             var marker = L.circleMarker([imovel.lat, imovel.lng], {
                 color: imovel.cor,
@@ -210,6 +219,8 @@
                 radius: 8,
                 weight: 2
             });
+
+            console.log('Marcador criado:', marker);
 
             var popupContent = `
                 <div style="width:250px; font-family:Arial, sans-serif;">
@@ -228,13 +239,16 @@
 
             marker.bindPopup(popupContent);
             marker.addTo(layers[tipoLayer]);
+            console.log('Marcador adicionado à layer:', tipoLayer);
         });
 
+        console.log('Adicionando camadas ao mapa...');
         // Adicionar camadas ao mapa inicialmente
         Object.values(layers).forEach(function(layer) {
             layer.addTo(map);
         });
 
+        console.log('Adicionando controle de camadas...');
         // Adicionar controle de camadas
         L.control.layers(null, {
             "🏠 Casa": layers.casas,
@@ -244,16 +258,22 @@
             "🏭 Galpão Industrial": layers.galpoes
         }, {collapsed: false}).addTo(map);
 
+        console.log('Mapa inicializado completamente!');
+
         // Função para alternar camadas (compatibilidade com legenda)
         function toggleLayer(layerName) {
+            console.log('Alternando layer:', layerName);
             var layer = layers[layerName];
             if (map.hasLayer(layer)) {
                 map.removeLayer(layer);
+                console.log('Layer removida:', layerName);
             } else {
                 layer.addTo(map);
+                console.log('Layer adicionada:', layerName);
             }
         }
     </script>
 </body>
-</html>< ! - -   M a p a   a t u a l i z a d o   e m   1 1 / 1 4 / 2 0 2 5   2 1 : 2 2 : 1 8   - - >  
+</html>< ! - -   M a p a   a t u a l i z a d o   e m   1 1 / 1 4 / 2 0 2 5   2 1 : 2 2 : 1 8   - - > 
+ 
  
