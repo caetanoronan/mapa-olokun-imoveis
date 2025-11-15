@@ -128,172 +128,292 @@
             map.options.minZoom = 10;
             map.options.maxZoom = 18;
 
-            // Dados dos imóveis
-            var imoveis = [
-                {
-                    tipo: 'Casa',
-                    endereco: 'Rua das Flores, 100, Florianópolis',
-                    lat: -27.4305001,
-                    lng: -48.4659858,
-                    cor: '#1f77b4',
-                    area: '200m²',
-                    quartos: 3,
-                    banheiros: 2,
-                    vagas: 2,
-                    valor: 'R$ 550.000',
-                    descricao: 'Linda casa com jardim e garagem',
-                    foto: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=300'
-                },
-                {
-                    tipo: 'Apartamento',
-                    endereco: 'Avenida Beira Mar, 500, Florianópolis',
-                    lat: -27.6023224,
-                    lng: -48.6026133,
-                    cor: '#2ca02c',
-                    area: '70m²',
-                    quartos: 2,
-                    banheiros: 1,
-                    vagas: 1,
-                    valor: 'R$ 300.000',
-                    descricao: 'Apartamento com vista para o mar',
-                    foto: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=300'
-                },
-                {
-                    tipo: 'Sala Comercial',
-                    endereco: 'Rua XV de Novembro, 20, Centro, Florianópolis',
-                    lat: -27.597,
-                    lng: -48.549,
-                    cor: '#ff7f0e',
-                    area: '40m²',
-                    quartos: 0,
-                    banheiros: 1,
-                    vagas: 0,
-                    valor: 'R$ 1.200/mês',
-                    descricao: 'Sala comercial bem localizada',
-                    foto: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=300'
-                },
-                {
-                    tipo: 'Terreno',
-                    endereco: 'Estrada Geral, Ratones, Florianópolis',
-                    lat: -27.5045161,
-                    lng: -48.4903989,
-                    cor: '#d62728',
-                    area: '500m²',
-                    quartos: 0,
-                    banheiros: 0,
-                    vagas: 0,
-                    valor: 'R$ 150.000',
-                    descricao: 'Terreno plano para construção',
-                    foto: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=300'
-                },
-                {
-                    tipo: 'Galpão Industrial',
-                    endereco: 'Rodovia SC-401, km 5, Florianópolis',
-                    lat: -27.5401647,
-                    lng: -48.5054413,
-                    cor: '#9467bd',
-                    area: '600m²',
-                    quartos: 0,
-                    banheiros: 2,
-                    vagas: 5,
-                    valor: 'R$ 850.000',
-                    descricao: 'Galpão industrial com doca',
-                    foto: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=300'
-                }
-            ];
+            
+// Dados dos imóveis
+var imoveis = [
+  {
+    "tipo": "Casa",
+    "endereco": "Rua das Flores, 100, Florianópolis",
+    "lat": -27.4305001,
+    "lng": -48.4659858,
+    "cor": "#1f77b4",
+    "area": "200m²",
+    "quartos": 3,
+    "banheiros": 2,
+    "vagas": 2,
+    "valor": "R$ 550.000",
+    "descricao": "Linda casa com jardim e garagem",
+    "foto": "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=300",
+    "fonte": "Olokun Imóveis"
+  },
+  {
+    "tipo": "Apartamento",
+    "endereco": "Avenida Beira Mar, 500, Florianópolis",
+    "lat": -27.6023224,
+    "lng": -48.6026133,
+    "cor": "#2ca02c",
+    "area": "70m²",
+    "quartos": 2,
+    "banheiros": 1,
+    "vagas": 1,
+    "valor": "R$ 300.000",
+    "descricao": "Apartamento com vista para o mar",
+    "foto": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=300",
+    "fonte": "Olokun Imóveis"
+  },
+  {
+    "tipo": "Sala Comercial",
+    "endereco": "Rua XV de Novembro, 20, Centro, Florianópolis",
+    "lat": -27.597,
+    "lng": -48.549,
+    "cor": "#ff7f0e",
+    "area": "40m²",
+    "quartos": 0,
+    "banheiros": 1,
+    "vagas": 0,
+    "valor": "R$ 1.200/mês",
+    "descricao": "Sala comercial bem localizada",
+    "foto": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=300",
+    "fonte": "Olokun Imóveis"
+  },
+  {
+    "tipo": "Terreno",
+    "endereco": "Estrada Geral, Ratones, Florianópolis",
+    "lat": -27.5045161,
+    "lng": -48.4903989,
+    "cor": "#d62728",
+    "area": "500m²",
+    "quartos": 0,
+    "banheiros": 0,
+    "vagas": 0,
+    "valor": "R$ 150.000",
+    "descricao": "Terreno plano para construção",
+    "foto": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=300",
+    "fonte": "Olokun Imóveis"
+  },
+  {
+    "tipo": "Galpão Industrial",
+    "endereco": "Rodovia SC-401, km 5, Florianópolis",
+    "lat": -27.5401647,
+    "lng": -48.5054413,
+    "cor": "#9467bd",
+    "area": "600m²",
+    "quartos": 0,
+    "banheiros": 2,
+    "vagas": 5,
+    "valor": "R$ 850.000",
+    "descricao": "Galpão industrial com doca",
+    "foto": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=300",
+    "fonte": "Olokun Imóveis"
+  },
+  {
+    "titulo": "Apartamento 2 quartos Centro - Excelente localização",
+    "preco": "R$ 450.000",
+    "link": "https://www.olx.com.br/sc/florianopolis/imoveis/apartamento-2-quartos-centro-excelente-localizacao",
+    "localizacao": "Centro, Florianópolis, SC",
+    "fonte": "OLX",
+    "tipo": "real",
+    "lat": -27.597,
+    "lng": -48.549,
+    "cor": "#3498db",
+    "area": "65m²",
+    "quartos": 2,
+    "banheiros": 1,
+    "vagas": 1,
+    "foto": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=300"
+  },
+  {
+    "titulo": "Casa 3 quartos Lagoa da Conceição - Vista para o mar",
+    "preco": "R$ 850.000",
+    "link": "https://www.olx.com.br/sc/florianopolis/imoveis/casa-3-quartos-lagoa-conceicao-vista-mar",
+    "localizacao": "Lagoa da Conceição, Florianópolis, SC",
+    "fonte": "OLX",
+    "tipo": "real",
+    "lat": -27.61,
+    "lng": -48.47,
+    "cor": "#e74c3c",
+    "area": "180m²",
+    "quartos": 3,
+    "banheiros": 2,
+    "vagas": 2,
+    "foto": "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=300"
+  },
+  {
+    "titulo": "Sala comercial Rua XV de Novembro - Centro Histórico",
+    "preco": "R$ 2.500/mês",
+    "link": "https://www.olx.com.br/sc/florianopolis/imoveis/sala-comercial-rua-xv-novembro-centro-historico",
+    "localizacao": "Centro Histórico, Florianópolis, SC",
+    "fonte": "OLX",
+    "tipo": "real",
+    "lat": -27.597,
+    "lng": -48.549,
+    "cor": "#f39c12",
+    "area": "45m²",
+    "quartos": 0,
+    "banheiros": 1,
+    "vagas": 0,
+    "foto": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=300"
+  },
+  {
+    "titulo": "Terreno 300m² Santo Antônio de Lisboa",
+    "preco": "R$ 180.000",
+    "link": "https://www.olx.com.br/sc/florianopolis/imoveis/terreno-300m2-santo-antonio-lisboa",
+    "localizacao": "Santo Antônio de Lisboa, Florianópolis, SC",
+    "fonte": "OLX",
+    "tipo": "real",
+    "lat": -27.51,
+    "lng": -48.52,
+    "cor": "#27ae60",
+    "area": "300m²",
+    "quartos": 0,
+    "banheiros": 0,
+    "vagas": 0,
+    "foto": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=300"
+  },
+  {
+    "titulo": "Galpão industrial 500m² Distrito Industrial",
+    "preco": "R$ 750.000",
+    "link": "https://www.olx.com.br/sc/florianopolis/imoveis/galpao-industrial-500m2-distrito-industrial",
+    "localizacao": "Distrito Industrial, Florianópolis, SC",
+    "fonte": "OLX",
+    "tipo": "real",
+    "lat": -27.54,
+    "lng": -48.505,
+    "cor": "#9b59b6",
+    "area": "500m²",
+    "quartos": 0,
+    "banheiros": 2,
+    "vagas": 4,
+    "foto": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=300"
+  },
+  {
+    "titulo": "Apartamento 1 quarto Jurerê Internacional",
+    "preco": "R$ 320.000",
+    "link": "https://www.olx.com.br/sc/florianopolis/imoveis/apartamento-1-quarto-jurere-internacional",
+    "localizacao": "Jurerê Internacional, Florianópolis, SC",
+    "fonte": "OLX",
+    "tipo": "real",
+    "lat": -27.46,
+    "lng": -48.5,
+    "cor": "#1abc9c",
+    "area": "45m²",
+    "quartos": 1,
+    "banheiros": 1,
+    "vagas": 1,
+    "foto": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=300"
+  },
+  {
+    "titulo": "Casa 4 quartos Campeche - Próximo à praia",
+    "preco": "R$ 920.000",
+    "link": "https://www.olx.com.br/sc/florianopolis/imoveis/casa-4-quartos-campeche-proximo-praia",
+    "localizacao": "Campeche, Florianópolis, SC",
+    "fonte": "OLX",
+    "tipo": "real",
+    "lat": -27.68,
+    "lng": -48.49,
+    "cor": "#e67e22",
+    "area": "220m²",
+    "quartos": 4,
+    "banheiros": 3,
+    "vagas": 2,
+    "foto": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=300"
+  },
+  {
+    "titulo": "Cobertura duplex Ingleses - Vista panorâmica",
+    "preco": "R$ 1.200.000",
+    "link": "https://www.olx.com.br/sc/florianopolis/imoveis/cobertura-duplex-ingleses-vista-panoramica",
+    "localizacao": "Ingleses, Florianópolis, SC",
+    "fonte": "OLX",
+    "tipo": "real",
+    "lat": -27.43,
+    "lng": -48.39,
+    "cor": "#34495e",
+    "area": "150m²",
+    "quartos": 3,
+    "banheiros": 2,
+    "vagas": 2,
+    "foto": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=300"
+  }
+];
 
-            console.log('Dados dos imóveis carregados:', imoveis.length, 'imóveis');
+// Criar camadas para cada fonte
+var layers = {
+    olokun: L.layerGroup(),
+    olx: L.layerGroup()
+};
 
-            // Criar camadas para cada tipo
-            var layers = {
-                casas: L.layerGroup(),
-                apartamentos: L.layerGroup(),
-                comerciais: L.layerGroup(),
-                terrenos: L.layerGroup(),
-                galpoes: L.layerGroup()
-            };
+console.log('Camadas criadas:', Object.keys(layers));
 
-            console.log('Camadas criadas:', Object.keys(layers));
+// Adicionar marcadores
+imoveis.forEach(function(imovel, index) {
+    console.log('Processando imóvel', index + 1, ':', imovel.titulo || imovel.tipo);
 
-            // Adicionar marcadores
-            imoveis.forEach(function(imovel, index) {
-                console.log('Processando imóvel', index + 1, ':', imovel.tipo);
-                var tipoLayer;
-                switch(imovel.tipo) {
-                    case 'Casa':
-                        tipoLayer = 'casas';
-                        break;
-                    case 'Apartamento':
-                        tipoLayer = 'apartamentos';
-                        break;
-                    case 'Sala Comercial':
-                        tipoLayer = 'comerciais';
-                        break;
-                    case 'Terreno':
-                        tipoLayer = 'terrenos';
-                        break;
-                    case 'Galpão Industrial':
-                        tipoLayer = 'galpoes';
-                        break;
-                    default:
-                        tipoLayer = 'casas'; // fallback
-                }
+    var tipoLayer = imovel.fonte === 'OLX' ? 'olx' : 'olokun';
 
-                console.log('Tipo de layer determinado:', tipoLayer);
+    var marker = L.circleMarker([imovel.lat, imovel.lng], {
+        color: imovel.cor,
+        fillColor: imovel.cor,
+        fillOpacity: 0.8,
+        radius: imovel.fonte === 'OLX' ? 6 : 8,  // Marcadores menores para OLX
+        weight: 2
+    });
 
-                var marker = L.circleMarker([imovel.lat, imovel.lng], {
-                    color: imovel.cor,
-                    fillColor: imovel.cor,
-                    fillOpacity: 0.8,
-                    radius: 8,
-                    weight: 2
-                });
+    console.log('Marcador criado para coordenadas:', imovel.lat, imovel.lng);
 
-                console.log('Marcador criado para coordenadas:', imovel.lat, imovel.lng);
+    var popupContent;
+    if (imovel.fonte === 'OLX') {
+        popupContent = `
+            <div style="width:280px; font-family:Arial, sans-serif;">
+                <div style="background:#ff6b35; color:white; padding:4px 8px; border-radius:3px; display:inline-block; font-size:10px; margin-bottom:6px;">OLX</div>
+                <h4 style="margin:0 0 8px 0; color:#2c3e50; font-size:14px;">${imovel.titulo}</h4>
+                <img src="${imovel.foto}" width="260" height="160" style="border-radius:3px; margin-bottom:8px; object-fit:cover;">
+                <p style="margin:3px 0; font-size:12px;"><strong>Localização:</strong> ${imovel.localizacao}</p>
+                <p style="margin:3px 0; font-size:12px;"><strong>Área:</strong> ${imovel.area}</p>
+                <p style="margin:3px 0; font-size:12px;"><strong>Quartos:</strong> ${imovel.quartos}</p>
+                <p style="margin:3px 0; font-size:12px;"><strong>Banheiros:</strong> ${imovel.banheiros}</p>
+                <p style="margin:3px 0; font-size:12px;"><strong>Vagas:</strong> ${imovel.vagas}</p>
+                <p style="margin:3px 0; font-size:16px; color:#e74c3c; font-weight:bold;"><strong>Valor:</strong> ${imovel.preco || imovel.valor}</p>
+                <a href="${imovel.link}" target="_blank" style="background:#ff6b35; color:white; border:none; padding:8px 16px; border-radius:3px; cursor:pointer; font-size:12px; text-decoration:none; display:inline-block; margin-top:8px;">Ver na OLX</a>
+            </div>
+        `;
+    } else {
+        popupContent = `
+            <div style="width:250px; font-family:Arial, sans-serif;">
+                <div style="background:#3498db; color:white; padding:4px 8px; border-radius:3px; display:inline-block; font-size:10px; margin-bottom:6px;">Olokun Imóveis</div>
+                <h4 style="margin:0 0 8px 0; color:#2c3e50; font-size:14px;">${imovel.tipo}</h4>
+                <img src="${imovel.foto}" width="230" height="150" style="border-radius:3px; margin-bottom:8px; object-fit:cover;">
+                <p style="margin:3px 0; font-size:12px;"><strong>Endereço:</strong> ${imovel.endereco}</p>
+                <p style="margin:3px 0; font-size:12px;"><strong>Área:</strong> ${imovel.area}</p>
+                <p style="margin:3px 0; font-size:12px;"><strong>Quartos:</strong> ${imovel.quartos}</p>
+                <p style="margin:3px 0; font-size:12px;"><strong>Banheiros:</strong> ${imovel.banheiros}</p>
+                <p style="margin:3px 0; font-size:12px;"><strong>Vagas:</strong> ${imovel.vagas}</p>
+                <p style="margin:3px 0; font-size:14px; color:#e74c3c;"><strong>Valor:</strong> ${imovel.valor}</p>
+                <p style="margin:6px 0; font-style:italic; color:#7f8c8d; font-size:11px;">${imovel.descricao}</p>
+                <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse em ${imovel.tipo} - ${imovel.endereco}')" style="background:#3498db; color:white; border:none; padding:6px 12px; border-radius:3px; cursor:pointer; font-size:11px;">📧 Contato</button>
+            </div>
+        `;
+    }
 
-                var popupContent = `
-                    <div style="width:250px; font-family:Arial, sans-serif;">
-                        <h4 style="margin:0 0 8px 0; color:#2c3e50; font-size:14px;">${imovel.tipo}</h4>
-                        <img src="${imovel.foto}" width="230" height="150" style="border-radius:3px; margin-bottom:8px; object-fit:cover;">
-                        <p style="margin:3px 0; font-size:12px;"><strong>Endereço:</strong> ${imovel.endereco}</p>
-                        <p style="margin:3px 0; font-size:12px;"><strong>Área:</strong> ${imovel.area}</p>
-                        <p style="margin:3px 0; font-size:12px;"><strong>Quartos:</strong> ${imovel.quartos}</p>
-                        <p style="margin:3px 0; font-size:12px;"><strong>Banheiros:</strong> ${imovel.banheiros}</p>
-                        <p style="margin:3px 0; font-size:12px;"><strong>Vagas:</strong> ${imovel.vagas}</p>
-                        <p style="margin:3px 0; font-size:14px; color:#e74c3c;"><strong>Valor:</strong> ${imovel.valor}</p>
-                        <p style="margin:6px 0; font-style:italic; color:#7f8c8d; font-size:11px;">${imovel.descricao}</p>
-                        <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse em ${imovel.tipo} - ${imovel.endereco}')" style="background:#3498db; color:white; border:none; padding:6px 12px; border-radius:3px; cursor:pointer; font-size:11px;">📧 Contato</button>
-                    </div>
-                `;
+    marker.bindPopup(popupContent);
+    marker.addTo(layers[tipoLayer]);
+    console.log('Marcador adicionado à layer:', tipoLayer);
+});
 
-                marker.bindPopup(popupContent);
-                marker.addTo(layers[tipoLayer]);
-                console.log('Marcador adicionado à layer:', tipoLayer);
-            });
+console.log('Adicionando camadas ao mapa...');
+// Adicionar camadas ao mapa inicialmente
+Object.values(layers).forEach(function(layer) {
+    layer.addTo(map);
+});
 
-            console.log('Adicionando camadas ao mapa...');
-            // Adicionar camadas ao mapa inicialmente
-            Object.values(layers).forEach(function(layer) {
-                layer.addTo(map);
-            });
+console.log('Adicionando controle de camadas...');
+// Adicionar controle de camadas
+L.control.layers(null, {
+    "🏢 Olokun Imóveis": layers.olokun,
+    "🟠 OLX": layers.olx
+}, {collapsed: false}).addTo(map);
 
-            console.log('Adicionando controle de camadas...');
-            // Adicionar controle de camadas
-            L.control.layers(null, {
-                "🏠 Casa": layers.casas,
-                "🏢 Apartamento": layers.apartamentos,
-                "🏬 Sala Comercial": layers.comerciais,
-                "🌱 Terreno": layers.terrenos,
-                "🏭 Galpão Industrial": layers.galpoes
-            }, {collapsed: false}).addTo(map);
-
-            console.log('Mapa inicializado completamente com', imoveis.length, 'marcadores!');
-
-        } catch (error) {
-            console.error('Erro ao inicializar mapa:', error);
-        }
-
-        // Função para alternar camadas (compatibilidade com legenda)
+console.log('Mapa inicializado com', imoveis.length, 'imóveis totais!');
+// Função para alternar camadas (compatibilidade com legenda)
         function toggleLayer(layerName) {
             console.log('Alternando layer:', layerName);
             var layer = layers[layerName];

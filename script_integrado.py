@@ -90,7 +90,7 @@ class ColetorImoveisAutomatico:
 
         mapa = folium.Map(location=[-27.5954, -48.5480], zoom_start=12, min_zoom=10, max_zoom=18)
 
-        # Cabeçalho profissional
+        # Cabeçalho profissional otimizado
         header_html = """
         <style>
             .header {
@@ -99,35 +99,35 @@ class ColetorImoveisAutomatico:
                 left: 10px;
                 z-index: 10000;
                 background: rgba(255, 255, 255, 0.95);
-                padding: 15px;
-                border-radius: 10px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                padding: 12px;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
                 font-family: 'Arial', sans-serif;
-                max-width: 300px;
+                max-width: 280px;
+                font-size: 13px;
             }
             .header h2 {
-                margin: 0 0 10px 0;
+                margin: 0 0 8px 0;
                 color: #2c3e50;
-                font-size: 20px;
+                font-size: 16px;
             }
             .header p {
-                margin: 5px 0;
-                font-size: 14px;
+                margin: 3px 0;
                 color: #34495e;
             }
             .header .contact {
-                margin-top: 10px;
-                padding-top: 10px;
+                margin-top: 8px;
+                padding-top: 6px;
                 border-top: 1px solid #ecf0f1;
             }
         </style>
         <div class="header">
             <h2>🏠 Olokun Imóveis</h2>
-            <p><strong>Especialistas em imóveis em Florianópolis</strong></p>
+            <p><strong>Especialistas em imóveis</strong></p>
             <div class="contact">
                 <p>📞 (48) 99999-9999</p>
                 <p>📧 contato@olokunimoveis.com.br</p>
-                <p>📍 Rua Principal, 123 - Centro, Florianópolis/SC</p>
+                <p>📍 Florianópolis/SC</p>
             </div>
         </div>
         """
@@ -170,17 +170,17 @@ class ColetorImoveisAutomatico:
 
         for imovel in imoveis:
             popup_html = f"""
-            <div style="width:280px; font-family:Arial, sans-serif;">
-                <h4 style="margin:0 0 10px 0; color:#2c3e50;">{imovel['tipo']}</h4>
-                <img src="{imovel['fotos']}" width="260" style="border-radius:5px; margin-bottom:10px;">
-                <p style="margin:5px 0;"><strong>Endereço:</strong> {imovel['endereco']}</p>
-                <p style="margin:5px 0;"><strong>Área:</strong> {imovel['area']}</p>
-                <p style="margin:5px 0;"><strong>Quartos:</strong> {imovel['quartos']}</p>
-                <p style="margin:5px 0;"><strong>Banheiros:</strong> {imovel['banheiros']}</p>
-                <p style="margin:5px 0;"><strong>Vagas:</strong> {imovel['vagas']}</p>
-                <p style="margin:5px 0; font-size:16px; color:#e74c3c;"><strong>Valor:</strong> {imovel['valor']}</p>
-                <p style="margin:10px 0; font-style:italic; color:#7f8c8d;">{imovel['descricao']}</p>
-                <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse em {imovel['tipo']} - {imovel['endereco']}')" style="background:#3498db; color:white; border:none; padding:8px 16px; border-radius:4px; cursor:pointer;">📧 Entrar em Contato</button>
+            <div style="width:250px; font-family:Arial, sans-serif;">
+                <h4 style="margin:0 0 8px 0; color:#2c3e50; font-size:14px;">{imovel['tipo']}</h4>
+                <img src="{imovel['fotos']}" width="230" height="150" style="border-radius:3px; margin-bottom:8px; object-fit:cover;">
+                <p style="margin:3px 0; font-size:12px;"><strong>Endereço:</strong> {imovel['endereco']}</p>
+                <p style="margin:3px 0; font-size:12px;"><strong>Área:</strong> {imovel['area']}</p>
+                <p style="margin:3px 0; font-size:12px;"><strong>Quartos:</strong> {imovel['quartos']}</p>
+                <p style="margin:3px 0; font-size:12px;"><strong>Banheiros:</strong> {imovel['banheiros']}</p>
+                <p style="margin:3px 0; font-size:12px;"><strong>Vagas:</strong> {imovel['vagas']}</p>
+                <p style="margin:3px 0; font-size:14px; color:#e74c3c;"><strong>Valor:</strong> {imovel['valor']}</p>
+                <p style="margin:6px 0; font-style:italic; color:#7f8c8d; font-size:11px;">{imovel['descricao']}</p>
+                <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse em {imovel['tipo']} - {imovel['endereco']}')" style="background:#3498db; color:white; border:none; padding:6px 12px; border-radius:3px; cursor:pointer; font-size:11px;">📧 Contato</button>
             </div>
             """
 
@@ -191,16 +191,16 @@ class ColetorImoveisAutomatico:
 
             folium.Marker([imovel['lat'], imovel['lon']], popup=folium.Popup(popup_html, max_width=300), tooltip=f"{imovel['tipo']} - {imovel['valor']}", icon=folium.DivIcon(html=icon_html)).add_to(grupos[imovel['tipo']])
 
-        # Legenda interativa
+        # Legenda interativa simplificada
         items = ''
         for tipo, cor in cores.items():
-            items += f"<li style='list-style:none;margin-bottom:6px;display:flex;align-items:center;cursor:pointer;' onclick=\"toggleLayerByName('{tipo}')\"><span style='display:inline-block;width:14px;height:14px;background-color:{cor};border-radius:50%;margin-right:8px;box-shadow:0 1px 2px rgba(0,0,0,.25)'></span>{tipo}</li>"
+            items += f"<li style='list-style:none;margin-bottom:4px;display:flex;align-items:center;cursor:pointer;font-size:12px;' onclick=\"toggleLayerByName('{tipo}')\"><span style='display:inline-block;width:12px;height:12px;background-color:{cor};border-radius:50%;margin-right:6px;'></span>{tipo}</li>"
 
         legend_html = f"""
-        <div style='position:absolute;bottom:10px;right:10px;z-index:9999;background:white;padding:12px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-size:14px;max-width:200px;'>
-            <b>🏠 Tipos de Imóvel</b>
-            <ul style='padding-left:0;margin:8px 0 0 0'>{items}</ul>
-            <p style="margin:10px 0 0 0; font-size:12px; color:#7f8c8d;">Clique para mostrar/ocultar</p>
+        <div style='position:absolute;bottom:10px;right:10px;z-index:9999;background:white;padding:10px;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.15);font-size:13px;max-width:180px;'>
+            <b>🏠 Tipos</b>
+            <ul style='padding-left:0;margin:6px 0 0 0'>{items}</ul>
+            <p style="margin:6px 0 0 0; font-size:11px; color:#7f8c8d;">Clique p/ mostrar/ocultar</p>
         </div>
 
         <script>
