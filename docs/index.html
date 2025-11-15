@@ -4,8 +4,8 @@
     <title>Mapa Interativo Olokun Imóveis</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css?v=20251114" />
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js?v=20251114"></script>
+    <link rel="stylesheet" href="leaflet/leaflet.css" />
+    <script src="leaflet/leaflet.js"></script>
     <style>
         html, body {
             height: 100%;
@@ -99,33 +99,52 @@
     </div>
 
     <script>
-        console.log('Script iniciado...');
+        console.log('Script carregado, aguardando DOM...');
 
-        // Verificar se Leaflet está carregado
-        if (typeof L === 'undefined') {
-            console.error('Leaflet não está carregado!');
-        } else {
-            console.log('Leaflet carregado:', L.version);
-        }
+        // Aguardar o DOM estar pronto
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM carregado, iniciando mapa...');
+            initMap();
+        });
 
-        try {
-            // Inicializar mapa
-            console.log('Inicializando mapa...');
-            var map = L.map('map').setView([-27.5954, -48.5480], 12);
-            console.log('Mapa criado:', map);
+        function initMap() {
+            console.log('Script iniciado...');
 
-            // Adicionar tile layer
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
+            // Verificar se Leaflet está carregado
+            if (typeof L === 'undefined') {
+                console.error('Leaflet não está carregado!');
+                document.getElementById('map').innerHTML = '<h2 style="color:red; text-align:center; padding:50px;">ERRO: Biblioteca Leaflet não carregou!</h2>';
+                return;
+            } else {
+                console.log('Leaflet carregado:', L.version);
+            }
 
-            console.log('Tile layer adicionado');
+            try {
+                // Verificar se o elemento do mapa existe
+                var mapElement = document.getElementById('map');
+                if (!mapElement) {
+                    console.error('Elemento #map não encontrado!');
+                    return;
+                }
 
-            // Definir limites de zoom
-            map.options.minZoom = 10;
-            map.options.maxZoom = 18;
+                // Inicializar mapa
+                console.log('Inicializando mapa...');
+                var map = L.map('map').setView([-27.5954, -48.5480], 12);
+                console.log('Mapa criado:', map);
 
-            
+                // Adicionar tile layer
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+
+                console.log('Tile layer adicionado');
+
+                // Definir limites de zoom
+                map.options.minZoom = 10;
+                map.options.maxZoom = 18;
+
+                
+
 // Dados dos imóveis
 var imoveis = [
   {
@@ -209,9 +228,9 @@ var imoveis = [
     "link": "https://www.olx.com.br/sc/florianopolis/imoveis/apartamento-2-quartos-centro-excelente-localizacao",
     "localizacao": "Centro, Florianópolis, SC",
     "fonte": "OLX",
-    "tipo": "real",
-    "lat": -27.597,
-    "lng": -48.549,
+    "tipo": "simulado",
+    "lat": -27.5972029,
+    "lng": -48.5494815,
     "cor": "#3498db",
     "area": "65m²",
     "quartos": 2,
@@ -225,9 +244,9 @@ var imoveis = [
     "link": "https://www.olx.com.br/sc/florianopolis/imoveis/casa-3-quartos-lagoa-conceicao-vista-mar",
     "localizacao": "Lagoa da Conceição, Florianópolis, SC",
     "fonte": "OLX",
-    "tipo": "real",
-    "lat": -27.61,
-    "lng": -48.47,
+    "tipo": "simulado",
+    "lat": -27.5697194,
+    "lng": -48.4515809,
     "cor": "#e74c3c",
     "area": "180m²",
     "quartos": 3,
@@ -241,9 +260,9 @@ var imoveis = [
     "link": "https://www.olx.com.br/sc/florianopolis/imoveis/sala-comercial-rua-xv-novembro-centro-historico",
     "localizacao": "Centro Histórico, Florianópolis, SC",
     "fonte": "OLX",
-    "tipo": "real",
-    "lat": -27.597,
-    "lng": -48.549,
+    "tipo": "simulado",
+    "lat": -27.5972029,
+    "lng": -48.5494815,
     "cor": "#f39c12",
     "area": "45m²",
     "quartos": 0,
@@ -257,9 +276,9 @@ var imoveis = [
     "link": "https://www.olx.com.br/sc/florianopolis/imoveis/terreno-300m2-santo-antonio-lisboa",
     "localizacao": "Santo Antônio de Lisboa, Florianópolis, SC",
     "fonte": "OLX",
-    "tipo": "real",
-    "lat": -27.51,
-    "lng": -48.52,
+    "tipo": "simulado",
+    "lat": -27.5061508,
+    "lng": -48.5188698,
     "cor": "#27ae60",
     "area": "300m²",
     "quartos": 0,
@@ -273,9 +292,9 @@ var imoveis = [
     "link": "https://www.olx.com.br/sc/florianopolis/imoveis/galpao-industrial-500m2-distrito-industrial",
     "localizacao": "Distrito Industrial, Florianópolis, SC",
     "fonte": "OLX",
-    "tipo": "real",
-    "lat": -27.54,
-    "lng": -48.505,
+    "tipo": "simulado",
+    "lat": -27.5401647,
+    "lng": -48.5054413,
     "cor": "#9b59b6",
     "area": "500m²",
     "quartos": 0,
@@ -289,7 +308,7 @@ var imoveis = [
     "link": "https://www.olx.com.br/sc/florianopolis/imoveis/apartamento-1-quarto-jurere-internacional",
     "localizacao": "Jurerê Internacional, Florianópolis, SC",
     "fonte": "OLX",
-    "tipo": "real",
+    "tipo": "simulado",
     "lat": -27.46,
     "lng": -48.5,
     "cor": "#1abc9c",
@@ -305,7 +324,7 @@ var imoveis = [
     "link": "https://www.olx.com.br/sc/florianopolis/imoveis/casa-4-quartos-campeche-proximo-praia",
     "localizacao": "Campeche, Florianópolis, SC",
     "fonte": "OLX",
-    "tipo": "real",
+    "tipo": "simulado",
     "lat": -27.68,
     "lng": -48.49,
     "cor": "#e67e22",
@@ -321,7 +340,7 @@ var imoveis = [
     "link": "https://www.olx.com.br/sc/florianopolis/imoveis/cobertura-duplex-ingleses-vista-panoramica",
     "localizacao": "Ingleses, Florianópolis, SC",
     "fonte": "OLX",
-    "tipo": "real",
+    "tipo": "simulado",
     "lat": -27.43,
     "lng": -48.39,
     "cor": "#34495e",
@@ -411,19 +430,25 @@ L.control.layers(null, {
 
 console.log('Mapa inicializado com', imoveis.length, 'imóveis totais!');
 // Função para alternar camadas (compatibilidade com legenda)
-        function toggleLayer(layerName) {
-            console.log('Alternando layer:', layerName);
-            var layer = layers[layerName];
-            if (map.hasLayer(layer)) {
-                map.removeLayer(layer);
-                console.log('Layer removida:', layerName);
-            } else {
-                layer.addTo(map);
-                console.log('Layer adicionada:', layerName);
+                window.toggleLayer = function(layerName) {
+                    console.log('Alternando layer:', layerName);
+                    var layer = layers[layerName];
+                    if (map.hasLayer(layer)) {
+                        map.removeLayer(layer);
+                        console.log('Layer removida:', layerName);
+                    } else {
+                        layer.addTo(map);
+                        console.log('Layer adicionada:', layerName);
+                    }
+                };
+
+                console.log('✅ Mapa inicializado com sucesso!');
+
+            } catch (error) {
+                console.error('ERRO ao inicializar mapa:', error);
+                document.getElementById('map').innerHTML = '<h2 style="color:red; text-align:center; padding:50px;">ERRO ao carregar mapa: ' + error.message + '</h2>';
             }
         }
-    </script><!-- Atualizado em 14/11/2025 21:30 -->
+    </script>
 </body>
-</html>< ! - -   M a p a   a t u a l i z a d o   e m   1 1 / 1 4 / 2 0 2 5   2 1 : 2 2 : 1 8   - - > 
- 
- 
+</html>

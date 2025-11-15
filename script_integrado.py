@@ -3,6 +3,7 @@ from geopy.geocoders import Nominatim
 import folium
 import time
 import branca
+import json
 
 
 class ColetorImoveisAutomatico:
@@ -68,8 +69,47 @@ class ColetorImoveisAutomatico:
             }
         ]
 
+    def carregar_dados_olx(self):
+        """Carrega dados da OLX do arquivo JSON"""
+        try:
+            with open('imoveis_olx.json', 'r', encoding='utf-8') as f:
+                dados_olx = json.load(f)
+
+            imoveis_olx = []
+            for imovel in dados_olx:
+                imovel_olx = {
+                    'tipo': 'OLX',
+                    'titulo': imovel.get('titulo', 'Título não disponível'),
+                    'endereco': imovel.get('localizacao', 'Localização não disponível'),
+                    'area': imovel.get('area', 'N/A'),
+                    'quartos': imovel.get('quartos', 0),
+                    'banheiros': imovel.get('banheiros', 0),
+                    'vagas': imovel.get('vagas', 0),
+                    'valor': imovel.get('preco', 'Preço não disponível'),
+                    'fotos': imovel.get('foto', 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400'),
+                    'descricao': f"Imóvel da OLX - {imovel.get('titulo', '')}",
+                    'link': imovel.get('link', '#'),
+                    'fonte': 'OLX',
+                    'lat': imovel.get('lat', -27.5954),
+                    'lon': imovel.get('lng', -48.5480),
+                    'cor': imovel.get('cor', '#3498db')
+                }
+                imoveis_olx.append(imovel_olx)
+
+            return imoveis_olx
+        except FileNotFoundError:
+            print("Arquivo imoveis_olx.json não encontrado. Usando apenas dados da Olokun.")
+            return []
+        except Exception as e:
+            print(f"Erro ao carregar dados OLX: {e}")
+            return []
+
     def geocodificar_imoveis(self, imoveis):
         for imovel in imoveis:
+            # Pula geocodificação se já tem coordenadas (caso OLX)
+            if 'lat' in imovel and 'lon' in imovel and imovel['lat'] != -27.5954:
+                continue
+
             try:
                 location = self.geolocator.geocode(imovel['endereco'])
                 time.sleep(1)  # Rate limiting
@@ -85,172 +125,88 @@ class ColetorImoveisAutomatico:
         return imoveis
 
     def criar_mapa_automatico(self):
-        imoveis = self._gerar_dados_ficticios()
-        imoveis = self.geocodificar_imoveis(imoveis)
+        # Carrega dados da Olokun
+        imoveis_olokun = self._gerar_dados_ficticios()
+        imoveis_olokun = self.geocodificar_imoveis(imoveis_olokun)
+
+        # Carrega dados da OLX
+        imoveis_olx = self.carregar_dados_olx()
+
+        # Combina todos os imóveis
+        todos_imoveis = imoveis_olokun + imoveis_olx
 
         mapa = folium.Map(location=[-27.5954, -48.5480], zoom_start=12, min_zoom=10, max_zoom=18)
 
-        # Cabeçalho profissional otimizado
-        header_html = """
-        <style>
-            .header {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                z-index: 10000;
-                background: rgba(255, 255, 255, 0.95);
-                padding: 12px;
-                border-radius: 8px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-                font-family: 'Arial', sans-serif;
-                max-width: 280px;
-                font-size: 13px;
-            }
-            .header h2 {
-                margin: 0 0 8px 0;
-                color: #2c3e50;
-                font-size: 16px;
-            }
-            .header p {
-                margin: 3px 0;
-                color: #34495e;
-            }
-            .header .contact {
-                margin-top: 8px;
-                padding-top: 6px;
-                border-top: 1px solid #ecf0f1;
-            }
-        </style>
-        <div class="header">
-            <h2>🏠 Olokun Imóveis</h2>
-            <p><strong>Especialistas em imóveis</strong></p>
-            <div class="contact">
-                <p>📞 (48) 99999-9999</p>
-                <p>📧 contato@olokunimoveis.com.br</p>
-                <p>📍 Florianópolis/SC</p>
-            </div>
-        </div>
-        """
-        mapa.get_root().html.add_child(folium.Html(header_html))
-
-        # Título central
+        # Título central simples
         title_html = """
-        <style>
-            .map-title {
-                position: absolute;
-                top: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                z-index: 9999;
-                background: rgba(255,255,255,0.9);
-                padding: 8px 16px;
-                border-radius: 8px;
-                font-weight: bold;
-                font-size: 18px;
-                color: #2c3e50;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            }
-        </style>
-        <div class="map-title">Mapa Interativo de Imóveis - Florianópolis</div>
+        <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:9999;background:rgba(255,255,255,0.9);padding:8px 16px;border-radius:8px;font-weight:bold;font-size:16px;color:#2c3e50;">
+            Mapa de Imóveis - Florianópolis
+        </div>
         """
         mapa.get_root().html.add_child(folium.Html(title_html))
 
+        # Cores para diferentes tipos
         cores = {
             'Casa': '#1f77b4',
             'Apartamento': '#2ca02c',
             'Sala Comercial': '#ff7f0e',
             'Terreno': '#d62728',
-            'Galpão Industrial': '#9467bd'
+            'Galpão Industrial': '#9467bd',
+            'OLX': '#3498db'
         }
 
+        # Cria grupos de camadas
         grupos = {}
         for tipo in cores.keys():
             grupos[tipo] = folium.FeatureGroup(name=tipo, show=True)
             grupos[tipo].add_to(mapa)
 
-        for imovel in imoveis:
-            popup_html = f"""
-            <div style="width:250px; font-family:Arial, sans-serif;">
-                <h4 style="margin:0 0 8px 0; color:#2c3e50; font-size:14px;">{imovel['tipo']}</h4>
-                <img src="{imovel['fotos']}" width="230" height="150" style="border-radius:3px; margin-bottom:8px; object-fit:cover;">
-                <p style="margin:3px 0; font-size:12px;"><strong>Endereço:</strong> {imovel['endereco']}</p>
-                <p style="margin:3px 0; font-size:12px;"><strong>Área:</strong> {imovel['area']}</p>
-                <p style="margin:3px 0; font-size:12px;"><strong>Quartos:</strong> {imovel['quartos']}</p>
-                <p style="margin:3px 0; font-size:12px;"><strong>Banheiros:</strong> {imovel['banheiros']}</p>
-                <p style="margin:3px 0; font-size:12px;"><strong>Vagas:</strong> {imovel['vagas']}</p>
-                <p style="margin:3px 0; font-size:14px; color:#e74c3c;"><strong>Valor:</strong> {imovel['valor']}</p>
-                <p style="margin:6px 0; font-style:italic; color:#7f8c8d; font-size:11px;">{imovel['descricao']}</p>
-                <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse em {imovel['tipo']} - {imovel['endereco']}')" style="background:#3498db; color:white; border:none; padding:6px 12px; border-radius:3px; cursor:pointer; font-size:11px;">📧 Contato</button>
-            </div>
-            """
+        for imovel in todos_imoveis:
+            # Determina o tipo para o grupo
+            tipo_grupo = imovel.get('tipo', 'OLX')
+            if tipo_grupo not in cores:
+                tipo_grupo = 'OLX'
 
-            cor = cores.get(imovel['tipo'], '#999999')
-            icon_html = f"""
-                <div style="background:{cor};width:20px;height:20px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3);transform:translate(-10px,-10px);"></div>
-            """
+            # Cria popup simples
+            if imovel.get('fonte') == 'OLX':
+                popup_html = f"""
+                <div style="width:200px;">
+                    <h5>{imovel['titulo']}</h5>
+                    <p><b>Local:</b> {imovel['endereco']}</p>
+                    <p><b>Valor:</b> {imovel['valor']}</p>
+                    <p><b>Área:</b> {imovel['area']}</p>
+                    <button onclick="window.open('{imovel['link']}')">Ver na OLX</button>
+                </div>
+                """
+            else:
+                popup_html = f"""
+                <div style="width:200px;">
+                    <h5>{imovel['tipo']}</h5>
+                    <p><b>Endereço:</b> {imovel['endereco']}</p>
+                    <p><b>Valor:</b> {imovel['valor']}</p>
+                    <p><b>Área:</b> {imovel['area']}</p>
+                    <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse')">Contato</button>
+                </div>
+                """
 
-            folium.Marker([imovel['lat'], imovel['lon']], popup=folium.Popup(popup_html, max_width=300), tooltip=f"{imovel['tipo']} - {imovel['valor']}", icon=folium.DivIcon(html=icon_html)).add_to(grupos[imovel['tipo']])
+            cor = imovel.get('cor', cores.get(tipo_grupo, '#999999'))
+            icon_html = f'<div style="background:{cor};width:15px;height:15px;border-radius:50%;border:2px solid #fff;"></div>'
 
-        # Legenda interativa simplificada
-        items = ''
-        for tipo, cor in cores.items():
-            items += f"<li style='list-style:none;margin-bottom:4px;display:flex;align-items:center;cursor:pointer;font-size:12px;' onclick=\"toggleLayerByName('{tipo}')\"><span style='display:inline-block;width:12px;height:12px;background-color:{cor};border-radius:50%;margin-right:6px;'></span>{tipo}</li>"
+            folium.Marker([imovel['lat'], imovel['lon']], popup=popup_html, tooltip=f"{imovel.get('titulo', imovel.get('tipo', 'Imóvel'))} - {imovel['valor']}", icon=folium.DivIcon(html=icon_html)).add_to(grupos[tipo_grupo])
 
-        legend_html = f"""
-        <div style='position:absolute;bottom:10px;right:10px;z-index:9999;background:white;padding:10px;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.15);font-size:13px;max-width:180px;'>
-            <b>🏠 Tipos</b>
-            <ul style='padding-left:0;margin:6px 0 0 0'>{items}</ul>
-            <p style="margin:6px 0 0 0; font-size:11px; color:#7f8c8d;">Clique p/ mostrar/ocultar</p>
-        </div>
-
-        <script>
-        function toggleLayerByName(name){{
-            var labels = document.querySelectorAll('.leaflet-control-layers-overlays label');
-            for (var i=0;i<labels.length;i++){{
-                var label = labels[i];
-                if(label && label.innerText && label.innerText.trim() === name){{
-                    var input = label.previousElementSibling;
-                    if(input && input.type === 'checkbox') input.click();
-                    break;
-                }}
-            }}
-        }}
-        </script>
-        """
-
+        # Controle de camadas simples
         folium.LayerControl(collapsed=False).add_to(mapa)
-        mapa.get_root().html.add_child(folium.Html(legend_html))
-
-        # Rodapé
-        footer_html = """
-        <style>
-            .footer {
-                position: absolute;
-                bottom: 10px;
-                left: 10px;
-                z-index: 9999;
-                background: rgba(255, 255, 255, 0.9);
-                padding: 8px 12px;
-                border-radius: 6px;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-                font-size: 12px;
-                color: #7f8c8d;
-            }
-        </style>
-        <div class="footer">
-            © 2025 Olokun Imóveis - Todos os direitos reservados
-        </div>
-        """
-        mapa.get_root().add_child(folium.Element(footer_html))
 
         mapa.save('mapa_imobiliaria_automatico.html')
 
-        df = pd.DataFrame(imoveis)
+        df = pd.DataFrame(imoveis_olokun)
         df.to_csv('dados_imoveis.csv', index=False)
 
-        print("Mapa profissional criado!")
-        print(f"Total de imóveis: {len(imoveis)}")
-        return imoveis
+        print("Mapa simplificado criado!")
+        print(f"Total de imóveis: {len(todos_imoveis)}")
+        print(f"Imóveis Olokun: {len(imoveis_olokun)}")
+        print(f"Imóveis OLX: {len(imoveis_olx)}")
+        return todos_imoveis
 
 
 if __name__ == '__main__':

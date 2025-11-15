@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_5cc8e748255858f10ee11212ee031cbb {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position: fixed; top: 10px; left: 50px; z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9); padding: 10px;
+            border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+    <h3 style="margin: 0; color: #2c3e50;">🏠 Mapa de Imóveis - Florianópolis</h3>
+    <p style="margin: 5px 0 0 0; font-size: 14px;">Legenda: Azul=Venda | Vermelho=Aluguel</p>
+    <p style="margin: 2px 0 0 0; font-size: 12px;">Total: 8 imóveis</p>
+</div>
+    
+            <div class="folium-map" id="map_5cc8e748255858f10ee11212ee031cbb" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_5cc8e748255858f10ee11212ee031cbb = L.map(
+                "map_5cc8e748255858f10ee11212ee031cbb",
+                {
+                    center: [-27.5954, -48.548],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_0c2e64a56f6120e481ac2b9b150c6147 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_0c2e64a56f6120e481ac2b9b150c6147.addTo(map_5cc8e748255858f10ee11212ee031cbb);
+        
+    
+            var feature_group_9e465a70a23f9c465a2b3f8ff8c06b82 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_87dcbcaad8733bddc03ca9f4f597f863 = L.marker(
+                [-27.596123, -48.549456],
+                {
+}
+            ).addTo(feature_group_9e465a70a23f9c465a2b3f8ff8c06b82);
+        
+    
+            var icon_a158058bd310f15e35bbf84987505829 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_efdf9cde5b93abe69020b586b0c4bded = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8055271b1fba0af8a80a1cd12e59d3fc = $(`<div id="html_8055271b1fba0af8a80a1cd12e59d3fc" style="width: 100.0%; height: 100.0%;">     <div style="width: 250px; font-family: Arial, sans-serif;">         <h4 style="margin: 0 0 10px 0; color: #2c3e50;">Casa Centro</h4>         <p style="margin: 5px 0;"><strong>Preço:</strong> R$ 550.000</p>         <p style="margin: 5px 0;"><strong>Endereço:</strong> Rua das Flores, 100, Florianópolis</p>         <p style="margin: 5px 0;"><strong>Tipo:</strong> Casa</p>         <p style="margin: 5px 0;"><strong>Fonte:</strong> Olokun Imóveis</p>         <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse em Casa Centro')"                 style="background: #3498db; color: white; border: none; padding: 8px 16px;                        border-radius: 4px; cursor: pointer; margin-top: 10px;">             📧 Entrar em Contato         </button>     </div>     </div>`)[0];
+                popup_efdf9cde5b93abe69020b586b0c4bded.setContent(html_8055271b1fba0af8a80a1cd12e59d3fc);
+            
+        
+
+        marker_87dcbcaad8733bddc03ca9f4f597f863.bindPopup(popup_efdf9cde5b93abe69020b586b0c4bded)
+        ;
+
+        
+    
+    
+            marker_87dcbcaad8733bddc03ca9f4f597f863.bindTooltip(
+                `<div>
+                     Casa Centro
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_87dcbcaad8733bddc03ca9f4f597f863.setIcon(icon_a158058bd310f15e35bbf84987505829);
+            
+    
+            var marker_8fb129023589e554b41056a279112fa9 = L.marker(
+                [-27.597234, -48.550567],
+                {
+}
+            ).addTo(feature_group_9e465a70a23f9c465a2b3f8ff8c06b82);
+        
+    
+            var icon_19d6de2f1d82aa873f4875fd160e3bf9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3c399b5655643872d77d1a8114c186f7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_70f93f4b45982c3d218485fcac8857ec = $(`<div id="html_70f93f4b45982c3d218485fcac8857ec" style="width: 100.0%; height: 100.0%;">     <div style="width: 250px; font-family: Arial, sans-serif;">         <h4 style="margin: 0 0 10px 0; color: #2c3e50;">Apartamento Beira Mar</h4>         <p style="margin: 5px 0;"><strong>Preço:</strong> R$ 300.000</p>         <p style="margin: 5px 0;"><strong>Endereço:</strong> Avenida Beira Mar, 500, Florianópolis</p>         <p style="margin: 5px 0;"><strong>Tipo:</strong> Apartamento</p>         <p style="margin: 5px 0;"><strong>Fonte:</strong> Olokun Imóveis</p>         <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse em Apartamento Beira Mar')"                 style="background: #3498db; color: white; border: none; padding: 8px 16px;                        border-radius: 4px; cursor: pointer; margin-top: 10px;">             📧 Entrar em Contato         </button>     </div>     </div>`)[0];
+                popup_3c399b5655643872d77d1a8114c186f7.setContent(html_70f93f4b45982c3d218485fcac8857ec);
+            
+        
+
+        marker_8fb129023589e554b41056a279112fa9.bindPopup(popup_3c399b5655643872d77d1a8114c186f7)
+        ;
+
+        
+    
+    
+            marker_8fb129023589e554b41056a279112fa9.bindTooltip(
+                `<div>
+                     Apartamento Beira Mar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8fb129023589e554b41056a279112fa9.setIcon(icon_19d6de2f1d82aa873f4875fd160e3bf9);
+            
+    
+            feature_group_9e465a70a23f9c465a2b3f8ff8c06b82.addTo(map_5cc8e748255858f10ee11212ee031cbb);
+        
+    
+            var feature_group_a26d4bf90b5e5f2f9ef9e0076729587c = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_5dacb3139165d0aeb87a70b025ca28c8 = L.marker(
+                [-27.596123, -48.549456],
+                {
+}
+            ).addTo(feature_group_a26d4bf90b5e5f2f9ef9e0076729587c);
+        
+    
+            var icon_d3ec9b9345f31db8b811dfd2c8b8202b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d1282a83e71a22850d6f97c639b3718f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e335a1fa05f2a2b886d467b8b48e695a = $(`<div id="html_e335a1fa05f2a2b886d467b8b48e695a" style="width: 100.0%; height: 100.0%;">     <div style="width: 250px; font-family: Arial, sans-serif;">         <h4 style="margin: 0 0 10px 0; color: #e74c3c;">Apartamento 2 quartos Centro - Vista parcial mar</h4>         <p style="margin: 5px 0;"><strong>Preço:</strong> R$ 3.500/mês</p>         <p style="margin: 5px 0;"><strong>Local:</strong> Centro, Florianópolis - SC</p>         <p style="margin: 5px 0;"><strong>Área:</strong> 65m²</p>         <p style="margin: 5px 0;"><strong>Quartos:</strong> 2</p>         <p style="margin: 5px 0;"><strong>Fonte:</strong> Viva Real</p>         <button onclick="window.open('https://www.vivareal.com.br/imovel/apartamento-2-quartos-centro-vista-parcial-mar-65m2-2vagas-garagem-101234567/')"                 style="background: #e74c3c; color: white; border: none; padding: 8px 16px;                        border-radius: 4px; cursor: pointer; margin-top: 10px;">             🏠 Ver no Viva Real (Aluguel)         </button>     </div>     </div>`)[0];
+                popup_d1282a83e71a22850d6f97c639b3718f.setContent(html_e335a1fa05f2a2b886d467b8b48e695a);
+            
+        
+
+        marker_5dacb3139165d0aeb87a70b025ca28c8.bindPopup(popup_d1282a83e71a22850d6f97c639b3718f)
+        ;
+
+        
+    
+    
+            marker_5dacb3139165d0aeb87a70b025ca28c8.bindTooltip(
+                `<div>
+                     Apartamento 2 quartos Centro - Vista parcial mar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5dacb3139165d0aeb87a70b025ca28c8.setIcon(icon_d3ec9b9345f31db8b811dfd2c8b8202b);
+            
+    
+            var marker_ac1b22f15ff71b32b613aaac3a4391e8 = L.marker(
+                [-27.575678, -48.460123],
+                {
+}
+            ).addTo(feature_group_a26d4bf90b5e5f2f9ef9e0076729587c);
+        
+    
+            var icon_8ec485cbf2da5e52df2b575807f3a0bd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9a05cba3547586f6d95d6e1b802dc471 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_243d7d6d9577c7a5cfe16d93a59c4350 = $(`<div id="html_243d7d6d9577c7a5cfe16d93a59c4350" style="width: 100.0%; height: 100.0%;">     <div style="width: 250px; font-family: Arial, sans-serif;">         <h4 style="margin: 0 0 10px 0; color: #e74c3c;">Casa 3 quartos Lagoa da Conceição - Próximo ao mar</h4>         <p style="margin: 5px 0;"><strong>Preço:</strong> R$ 4.500/mês</p>         <p style="margin: 5px 0;"><strong>Local:</strong> Lagoa da Conceição, Florianópolis - SC</p>         <p style="margin: 5px 0;"><strong>Área:</strong> 180m²</p>         <p style="margin: 5px 0;"><strong>Quartos:</strong> 3</p>         <p style="margin: 5px 0;"><strong>Fonte:</strong> Viva Real</p>         <button onclick="window.open('https://www.vivareal.com.br/imovel/casa-3-quartos-lagoa-conceicao-proximo-mar-180m2-2vagas-garagem-101234568/')"                 style="background: #e74c3c; color: white; border: none; padding: 8px 16px;                        border-radius: 4px; cursor: pointer; margin-top: 10px;">             🏠 Ver no Viva Real (Aluguel)         </button>     </div>     </div>`)[0];
+                popup_9a05cba3547586f6d95d6e1b802dc471.setContent(html_243d7d6d9577c7a5cfe16d93a59c4350);
+            
+        
+
+        marker_ac1b22f15ff71b32b613aaac3a4391e8.bindPopup(popup_9a05cba3547586f6d95d6e1b802dc471)
+        ;
+
+        
+    
+    
+            marker_ac1b22f15ff71b32b613aaac3a4391e8.bindTooltip(
+                `<div>
+                     Casa 3 quartos Lagoa da Conceição - Próximo ao mar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ac1b22f15ff71b32b613aaac3a4391e8.setIcon(icon_8ec485cbf2da5e52df2b575807f3a0bd);
+            
+    
+            var marker_79af08d5df7d1aadfbc09707d45d36cf = L.marker(
+                [-27.596789, -48.549012],
+                {
+}
+            ).addTo(feature_group_a26d4bf90b5e5f2f9ef9e0076729587c);
+        
+    
+            var icon_0e9d31a427c80fa73c81d1c6edcd819b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_62740be6f12b65f4ad1a13c6fa9d885d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_38baf691cb217b7bc1f2885e66936486 = $(`<div id="html_38baf691cb217b7bc1f2885e66936486" style="width: 100.0%; height: 100.0%;">     <div style="width: 250px; font-family: Arial, sans-serif;">         <h4 style="margin: 0 0 10px 0; color: #e74c3c;">Sala comercial Rua Felipe Schmidt - Centro Executivo</h4>         <p style="margin: 5px 0;"><strong>Preço:</strong> R$ 8.000/mês</p>         <p style="margin: 5px 0;"><strong>Local:</strong> Centro, Florianópolis - SC</p>         <p style="margin: 5px 0;"><strong>Área:</strong> 50m²</p>         <p style="margin: 5px 0;"><strong>Quartos:</strong> 0</p>         <p style="margin: 5px 0;"><strong>Fonte:</strong> Viva Real</p>         <button onclick="window.open('https://www.vivareal.com.br/imovel/sala-comercial-rua-felipe-schmidt-centro-executivo-50m2-101234569/')"                 style="background: #e74c3c; color: white; border: none; padding: 8px 16px;                        border-radius: 4px; cursor: pointer; margin-top: 10px;">             🏠 Ver no Viva Real (Aluguel)         </button>     </div>     </div>`)[0];
+                popup_62740be6f12b65f4ad1a13c6fa9d885d.setContent(html_38baf691cb217b7bc1f2885e66936486);
+            
+        
+
+        marker_79af08d5df7d1aadfbc09707d45d36cf.bindPopup(popup_62740be6f12b65f4ad1a13c6fa9d885d)
+        ;
+
+        
+    
+    
+            marker_79af08d5df7d1aadfbc09707d45d36cf.bindTooltip(
+                `<div>
+                     Sala comercial Rua Felipe Schmidt - Centro Executivo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_79af08d5df7d1aadfbc09707d45d36cf.setIcon(icon_0e9d31a427c80fa73c81d1c6edcd819b);
+            
+    
+            var marker_e844c21f5b6de8b255efec99b8a92570 = L.marker(
+                [-27.506789, -48.518456],
+                {
+}
+            ).addTo(feature_group_a26d4bf90b5e5f2f9ef9e0076729587c);
+        
+    
+            var icon_c6a2d3b4d6d2f9a4f801a3e3a43d802c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_17e9539ed167282c2c48f578fca7dcf5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_02118ec22ad3aa152c114cbaad39ce29 = $(`<div id="html_02118ec22ad3aa152c114cbaad39ce29" style="width: 100.0%; height: 100.0%;">     <div style="width: 250px; font-family: Arial, sans-serif;">         <h4 style="margin: 0 0 10px 0; color: #e74c3c;">Terreno 400m² Santo Antônio de Lisboa</h4>         <p style="margin: 5px 0;"><strong>Preço:</strong> R$ 1.200/mês</p>         <p style="margin: 5px 0;"><strong>Local:</strong> Santo Antônio de Lisboa, Florianópolis - SC</p>         <p style="margin: 5px 0;"><strong>Área:</strong> 400m²</p>         <p style="margin: 5px 0;"><strong>Quartos:</strong> 0</p>         <p style="margin: 5px 0;"><strong>Fonte:</strong> Viva Real</p>         <button onclick="window.open('https://www.vivareal.com.br/imovel/terreno-400m2-santo-antonio-lisboa-101234570/')"                 style="background: #e74c3c; color: white; border: none; padding: 8px 16px;                        border-radius: 4px; cursor: pointer; margin-top: 10px;">             🏠 Ver no Viva Real (Aluguel)         </button>     </div>     </div>`)[0];
+                popup_17e9539ed167282c2c48f578fca7dcf5.setContent(html_02118ec22ad3aa152c114cbaad39ce29);
+            
+        
+
+        marker_e844c21f5b6de8b255efec99b8a92570.bindPopup(popup_17e9539ed167282c2c48f578fca7dcf5)
+        ;
+
+        
+    
+    
+            marker_e844c21f5b6de8b255efec99b8a92570.bindTooltip(
+                `<div>
+                     Terreno 400m² Santo Antônio de Lisboa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e844c21f5b6de8b255efec99b8a92570.setIcon(icon_c6a2d3b4d6d2f9a4f801a3e3a43d802c);
+            
+    
+            var marker_3b09f95c24ddad3ce8b1e7846510c408 = L.marker(
+                [-27.450123, -48.480456],
+                {
+}
+            ).addTo(feature_group_a26d4bf90b5e5f2f9ef9e0076729587c);
+        
+    
+            var icon_de4212ca49c4f494386b73a908faeeb0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0e182381d4ed627a5dcf0d67d8a49db3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_21629c1aa398a88d20743e6c1a926593 = $(`<div id="html_21629c1aa398a88d20743e6c1a926593" style="width: 100.0%; height: 100.0%;">     <div style="width: 250px; font-family: Arial, sans-serif;">         <h4 style="margin: 0 0 10px 0; color: #e74c3c;">Apartamento 1 quarto Jurerê - Praia particular</h4>         <p style="margin: 5px 0;"><strong>Preço:</strong> R$ 6.500/mês</p>         <p style="margin: 5px 0;"><strong>Local:</strong> Jurerê, Florianópolis - SC</p>         <p style="margin: 5px 0;"><strong>Área:</strong> 45m²</p>         <p style="margin: 5px 0;"><strong>Quartos:</strong> 1</p>         <p style="margin: 5px 0;"><strong>Fonte:</strong> Viva Real</p>         <button onclick="window.open('https://www.vivareal.com.br/imovel/apartamento-1-quarto-jurere-praia-particular-45m2-1vaga-garagem-101234571/')"                 style="background: #e74c3c; color: white; border: none; padding: 8px 16px;                        border-radius: 4px; cursor: pointer; margin-top: 10px;">             🏠 Ver no Viva Real (Aluguel)         </button>     </div>     </div>`)[0];
+                popup_0e182381d4ed627a5dcf0d67d8a49db3.setContent(html_21629c1aa398a88d20743e6c1a926593);
+            
+        
+
+        marker_3b09f95c24ddad3ce8b1e7846510c408.bindPopup(popup_0e182381d4ed627a5dcf0d67d8a49db3)
+        ;
+
+        
+    
+    
+            marker_3b09f95c24ddad3ce8b1e7846510c408.bindTooltip(
+                `<div>
+                     Apartamento 1 quarto Jurerê - Praia particular
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3b09f95c24ddad3ce8b1e7846510c408.setIcon(icon_de4212ca49c4f494386b73a908faeeb0);
+            
+    
+            var marker_8140ecfbf17a509656240019a5f116f7 = L.marker(
+                [-27.670456, -48.480789],
+                {
+}
+            ).addTo(feature_group_a26d4bf90b5e5f2f9ef9e0076729587c);
+        
+    
+            var icon_762ccb8d0ce2d29868f58650fb697b88 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4b5cb666a1837a8482be14275155f030 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e2f7e339516ef3f0ec8c64373f807eb6 = $(`<div id="html_e2f7e339516ef3f0ec8c64373f807eb6" style="width: 100.0%; height: 100.0%;">     <div style="width: 250px; font-family: Arial, sans-serif;">         <h4 style="margin: 0 0 10px 0; color: #e74c3c;">Casa 4 quartos Campeche - Lazer completo</h4>         <p style="margin: 5px 0;"><strong>Preço:</strong> R$ 7.000/mês</p>         <p style="margin: 5px 0;"><strong>Local:</strong> Campeche, Florianópolis - SC</p>         <p style="margin: 5px 0;"><strong>Área:</strong> 240m²</p>         <p style="margin: 5px 0;"><strong>Quartos:</strong> 4</p>         <p style="margin: 5px 0;"><strong>Fonte:</strong> Viva Real</p>         <button onclick="window.open('https://www.vivareal.com.br/imovel/casa-4-quartos-campeche-lazer-completo-240m2-2vagas-garagem-101234572/')"                 style="background: #e74c3c; color: white; border: none; padding: 8px 16px;                        border-radius: 4px; cursor: pointer; margin-top: 10px;">             🏠 Ver no Viva Real (Aluguel)         </button>     </div>     </div>`)[0];
+                popup_4b5cb666a1837a8482be14275155f030.setContent(html_e2f7e339516ef3f0ec8c64373f807eb6);
+            
+        
+
+        marker_8140ecfbf17a509656240019a5f116f7.bindPopup(popup_4b5cb666a1837a8482be14275155f030)
+        ;
+
+        
+    
+    
+            marker_8140ecfbf17a509656240019a5f116f7.bindTooltip(
+                `<div>
+                     Casa 4 quartos Campeche - Lazer completo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8140ecfbf17a509656240019a5f116f7.setIcon(icon_762ccb8d0ce2d29868f58650fb697b88);
+            
+    
+            feature_group_a26d4bf90b5e5f2f9ef9e0076729587c.addTo(map_5cc8e748255858f10ee11212ee031cbb);
+        
+    
+            var layer_control_14e3814f472a775fa4b49740240729d7_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_0c2e64a56f6120e481ac2b9b150c6147,
+                },
+                overlays :  {
+                    "\ud83c\udfe0 Olokun Im\u00f3veis (Venda)" : feature_group_9e465a70a23f9c465a2b3f8ff8c06b82,
+                    "\ud83c\udfe2 Viva Real (Aluguel)" : feature_group_a26d4bf90b5e5f2f9ef9e0076729587c,
+                },
+            };
+            let layer_control_14e3814f472a775fa4b49740240729d7 = L.control.layers(
+                layer_control_14e3814f472a775fa4b49740240729d7_layers.base_layers,
+                layer_control_14e3814f472a775fa4b49740240729d7_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_5cc8e748255858f10ee11212ee031cbb);
+
+        
+</script>
+</html>

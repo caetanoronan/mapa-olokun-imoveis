@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapa de Imóveis - Florianópolis</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <style>
+        #map { height: 100vh; width: 100vw; margin: 0; padding: 0; }
+        body { margin: 0; padding: 0; }
+        .header {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h3>🏠 Olokun Imóveis</h3>
+        <p>Mapa Interativo - Florianópolis</p>
+        <p>Total: 10 imóveis</p>
+    </div>
+    <div id="map"></div>
+
+    <script>
+        // Inicializar mapa
+        var map = L.map('map').setView([-27.5954, -48.5480], 12);
+
+        // Adicionar tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Adicionar marcadores
+        
+    L.marker([-27.5972029, -48.5494815])
+        .addTo(map)
+        .bindPopup(`
+            <div style="width:200px;">
+                <h5>Apartamento 2 quartos Centro - Excelente localização</h5>
+                <p><b>Preço:</b> R$ 450.000</p>
+                <p><b>Local:</b> Centro, Florianópolis, SC</p>
+                <button onclick="window.open('https://www.olx.com.br/sc/florianopolis/imoveis/apartamento-2-quartos-centro-excelente-localizacao')">Ver na OLX</button>
+            </div>
+        `)
+        .bindTooltip("Apartamento 2 quartos Centro - Excelente localização");
+    
+    L.marker([-27.5697194, -48.4515809])
+        .addTo(map)
+        .bindPopup(`
+            <div style="width:200px;">
+                <h5>Casa 3 quartos Lagoa da Conceição - Vista para o mar</h5>
+                <p><b>Preço:</b> R$ 850.000</p>
+                <p><b>Local:</b> Lagoa da Conceição, Florianópolis, SC</p>
+                <button onclick="window.open('https://www.olx.com.br/sc/florianopolis/imoveis/casa-3-quartos-lagoa-conceicao-vista-mar')">Ver na OLX</button>
+            </div>
+        `)
+        .bindTooltip("Casa 3 quartos Lagoa da Conceição - Vista para o mar");
+    
+    L.marker([-27.5972029, -48.5494815])
+        .addTo(map)
+        .bindPopup(`
+            <div style="width:200px;">
+                <h5>Sala comercial Rua XV de Novembro - Centro Histórico</h5>
+                <p><b>Preço:</b> R$ 2.500/mês</p>
+                <p><b>Local:</b> Centro Histórico, Florianópolis, SC</p>
+                <button onclick="window.open('https://www.olx.com.br/sc/florianopolis/imoveis/sala-comercial-rua-xv-novembro-centro-historico')">Ver na OLX</button>
+            </div>
+        `)
+        .bindTooltip("Sala comercial Rua XV de Novembro - Centro Histórico");
+    
+    L.marker([-27.5061508, -48.5188698])
+        .addTo(map)
+        .bindPopup(`
+            <div style="width:200px;">
+                <h5>Terreno 300m² Santo Antônio de Lisboa</h5>
+                <p><b>Preço:</b> R$ 180.000</p>
+                <p><b>Local:</b> Santo Antônio de Lisboa, Florianópolis, SC</p>
+                <button onclick="window.open('https://www.olx.com.br/sc/florianopolis/imoveis/terreno-300m2-santo-antonio-lisboa')">Ver na OLX</button>
+            </div>
+        `)
+        .bindTooltip("Terreno 300m² Santo Antônio de Lisboa");
+    
+    L.marker([-27.5401647, -48.5054413])
+        .addTo(map)
+        .bindPopup(`
+            <div style="width:200px;">
+                <h5>Galpão industrial 500m² Distrito Industrial</h5>
+                <p><b>Preço:</b> R$ 750.000</p>
+                <p><b>Local:</b> Distrito Industrial, Florianópolis, SC</p>
+                <button onclick="window.open('https://www.olx.com.br/sc/florianopolis/imoveis/galpao-industrial-500m2-distrito-industrial')">Ver na OLX</button>
+            </div>
+        `)
+        .bindTooltip("Galpão industrial 500m² Distrito Industrial");
+    
+    L.marker([-27.46, -48.5])
+        .addTo(map)
+        .bindPopup(`
+            <div style="width:200px;">
+                <h5>Apartamento 1 quarto Jurerê Internacional</h5>
+                <p><b>Preço:</b> R$ 320.000</p>
+                <p><b>Local:</b> Jurerê Internacional, Florianópolis, SC</p>
+                <button onclick="window.open('https://www.olx.com.br/sc/florianopolis/imoveis/apartamento-1-quarto-jurere-internacional')">Ver na OLX</button>
+            </div>
+        `)
+        .bindTooltip("Apartamento 1 quarto Jurerê Internacional");
+    
+    L.marker([-27.68, -48.49])
+        .addTo(map)
+        .bindPopup(`
+            <div style="width:200px;">
+                <h5>Casa 4 quartos Campeche - Próximo à praia</h5>
+                <p><b>Preço:</b> R$ 920.000</p>
+                <p><b>Local:</b> Campeche, Florianópolis, SC</p>
+                <button onclick="window.open('https://www.olx.com.br/sc/florianopolis/imoveis/casa-4-quartos-campeche-proximo-praia')">Ver na OLX</button>
+            </div>
+        `)
+        .bindTooltip("Casa 4 quartos Campeche - Próximo à praia");
+    
+    L.marker([-27.43, -48.39])
+        .addTo(map)
+        .bindPopup(`
+            <div style="width:200px;">
+                <h5>Cobertura duplex Ingleses - Vista panorâmica</h5>
+                <p><b>Preço:</b> R$ 1.200.000</p>
+                <p><b>Local:</b> Ingleses, Florianópolis, SC</p>
+                <button onclick="window.open('https://www.olx.com.br/sc/florianopolis/imoveis/cobertura-duplex-ingleses-vista-panoramica')">Ver na OLX</button>
+            </div>
+        `)
+        .bindTooltip("Cobertura duplex Ingleses - Vista panorâmica");
+    
+    L.marker([-27.5954, -48.548])
+        .addTo(map)
+        .bindPopup(`
+            <div style="width:200px;">
+                <h5>Casa Centro</h5>
+                <p><b>Preço:</b> R$ 550.000</p>
+                <p><b>Endereço:</b> Rua das Flores, 100, Florianópolis</p>
+                <button onclick="window.open('mailto:contato@olokunimoveis.com.br')">Contato</button>
+            </div>
+        `)
+        .bindTooltip("Casa Centro");
+    
+    L.marker([-27.6023, -48.6026])
+        .addTo(map)
+        .bindPopup(`
+            <div style="width:200px;">
+                <h5>Apartamento Beira Mar</h5>
+                <p><b>Preço:</b> R$ 300.000</p>
+                <p><b>Endereço:</b> Avenida Beira Mar, 500, Florianópolis</p>
+                <button onclick="window.open('mailto:contato@olokunimoveis.com.br')">Contato</button>
+            </div>
+        `)
+        .bindTooltip("Apartamento Beira Mar");
+    
+
+        console.log('Mapa carregado com 10 imóveis');
+    </script>
+</body>
+</html>
