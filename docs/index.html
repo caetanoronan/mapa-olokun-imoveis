@@ -218,9 +218,26 @@
             // Adicionar marcadores
             imoveis.forEach(function(imovel, index) {
                 console.log('Processando imóvel', index + 1, ':', imovel.tipo);
-                var tipoLayer = imovel.tipo.toLowerCase().replace(' ', '').replace('ã', 'a');
-                if (tipoLayer === 'galpãoindustrial') tipoLayer = 'galpoes';
-                if (tipoLayer === 'salacomercial') tipoLayer = 'comerciais';
+                var tipoLayer;
+                switch(imovel.tipo) {
+                    case 'Casa':
+                        tipoLayer = 'casas';
+                        break;
+                    case 'Apartamento':
+                        tipoLayer = 'apartamentos';
+                        break;
+                    case 'Sala Comercial':
+                        tipoLayer = 'comerciais';
+                        break;
+                    case 'Terreno':
+                        tipoLayer = 'terrenos';
+                        break;
+                    case 'Galpão Industrial':
+                        tipoLayer = 'galpoes';
+                        break;
+                    default:
+                        tipoLayer = 'casas'; // fallback
+                }
 
                 console.log('Tipo de layer determinado:', tipoLayer);
 
