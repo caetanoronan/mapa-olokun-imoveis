@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_1cfef08efc27bcf3caf1199543d197d8 {
+                #map_cb63f9cb0bd3c7abe6727708af96feb5 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -53,20 +53,95 @@
 </head>
 <body>
     
+    <div id="html_14db9da36664bcdb24da05e1df656ca2" style="width: 100.0%; height: 100.0%;">
+        &lt;style&gt;
+            .header {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                z-index: 10000;
+                background: rgba(255, 255, 255, 0.95);
+                padding: 12px;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                font-family: &#39;Arial&#39;, sans-serif;
+                max-width: 280px;
+                font-size: 13px;
+            }
+            .header h2 {
+                margin: 0 0 8px 0;
+                color: #2c3e50;
+                font-size: 16px;
+            }
+            .header p {
+                margin: 3px 0;
+                color: #34495e;
+            }
+            .header .contact {
+                margin-top: 8px;
+                padding-top: 6px;
+                border-top: 1px solid #ecf0f1;
+            }
+        &lt;/style&gt;
+        &lt;div class=&#34;header&#34;&gt;
+            &lt;h2&gt;🏠 Olokun Imóveis&lt;/h2&gt;
+            &lt;p&gt;&lt;strong&gt;Especialistas em imóveis&lt;/strong&gt;&lt;/p&gt;
+            &lt;div class=&#34;contact&#34;&gt;
+                &lt;p&gt;📞 (48) 99999-9999&lt;/p&gt;
+                &lt;p&gt;📧 contato@olokunimoveis.com.br&lt;/p&gt;
+                &lt;p&gt;📍 Florianópolis/SC&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        </div>
+    <div id="html_a330611768d91db104129f8360f22d1a" style="width: 100.0%; height: 100.0%;">
+        &lt;style&gt;
+            .map-title {
+                position: absolute;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 9999;
+                background: rgba(255,255,255,0.9);
+                padding: 8px 16px;
+                border-radius: 8px;
+                font-weight: bold;
+                font-size: 18px;
+                color: #2c3e50;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            }
+        &lt;/style&gt;
+        &lt;div class=&#34;map-title&#34;&gt;Mapa Interativo de Imóveis - Florianópolis&lt;/div&gt;
+        </div>
+    <div id="html_65d5e93f495d96981e08e67636c5cbf0" style="width: 100.0%; height: 100.0%;">
+        &lt;div style=&#39;position:absolute;bottom:10px;right:10px;z-index:9999;background:white;padding:10px;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.15);font-size:13px;max-width:180px;&#39;&gt;
+            &lt;b&gt;🏠 Tipos&lt;/b&gt;
+            &lt;ul style=&#39;padding-left:0;margin:6px 0 0 0&#39;&gt;&lt;li style=&#39;list-style:none;margin-bottom:4px;display:flex;align-items:center;cursor:pointer;font-size:12px;&#39; onclick=&#34;toggleLayerByName(&#39;Casa&#39;)&#34;&gt;&lt;span style=&#39;display:inline-block;width:12px;height:12px;background-color:#1f77b4;border-radius:50%;margin-right:6px;&#39;&gt;&lt;/span&gt;Casa&lt;/li&gt;&lt;li style=&#39;list-style:none;margin-bottom:4px;display:flex;align-items:center;cursor:pointer;font-size:12px;&#39; onclick=&#34;toggleLayerByName(&#39;Apartamento&#39;)&#34;&gt;&lt;span style=&#39;display:inline-block;width:12px;height:12px;background-color:#2ca02c;border-radius:50%;margin-right:6px;&#39;&gt;&lt;/span&gt;Apartamento&lt;/li&gt;&lt;li style=&#39;list-style:none;margin-bottom:4px;display:flex;align-items:center;cursor:pointer;font-size:12px;&#39; onclick=&#34;toggleLayerByName(&#39;Sala Comercial&#39;)&#34;&gt;&lt;span style=&#39;display:inline-block;width:12px;height:12px;background-color:#ff7f0e;border-radius:50%;margin-right:6px;&#39;&gt;&lt;/span&gt;Sala Comercial&lt;/li&gt;&lt;li style=&#39;list-style:none;margin-bottom:4px;display:flex;align-items:center;cursor:pointer;font-size:12px;&#39; onclick=&#34;toggleLayerByName(&#39;Terreno&#39;)&#34;&gt;&lt;span style=&#39;display:inline-block;width:12px;height:12px;background-color:#d62728;border-radius:50%;margin-right:6px;&#39;&gt;&lt;/span&gt;Terreno&lt;/li&gt;&lt;li style=&#39;list-style:none;margin-bottom:4px;display:flex;align-items:center;cursor:pointer;font-size:12px;&#39; onclick=&#34;toggleLayerByName(&#39;Galpão Industrial&#39;)&#34;&gt;&lt;span style=&#39;display:inline-block;width:12px;height:12px;background-color:#9467bd;border-radius:50%;margin-right:6px;&#39;&gt;&lt;/span&gt;Galpão Industrial&lt;/li&gt;&lt;/ul&gt;
+            &lt;p style=&#34;margin:6px 0 0 0; font-size:11px; color:#7f8c8d;&#34;&gt;Clique p/ mostrar/ocultar&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;script&gt;
+        function toggleLayerByName(name){
+            var labels = document.querySelectorAll(&#39;.leaflet-control-layers-overlays label&#39;);
+            for (var i=0;i&lt;labels.length;i++){
+                var label = labels[i];
+                if(label &amp;&amp; label.innerText &amp;&amp; label.innerText.trim() === name){
+                    var input = label.previousElementSibling;
+                    if(input &amp;&amp; input.type === &#39;checkbox&#39;) input.click();
+                    break;
+                }
+            }
+        }
+        &lt;/script&gt;
+        </div>
     
-<div style='position:absolute;top:10px;left:10px;z-index:10000;background:white;padding:10px;border-radius:5px;'>
-    <h3> Olokun Imóveis</h3>
-    <p>Teste do mapa</p>
-</div>
-    
-            <div class="folium-map" id="map_1cfef08efc27bcf3caf1199543d197d8" ></div>
+            <div class="folium-map" id="map_cb63f9cb0bd3c7abe6727708af96feb5" ></div>
         
 </body>
 <script>
     
     
-            var map_1cfef08efc27bcf3caf1199543d197d8 = L.map(
-                "map_1cfef08efc27bcf3caf1199543d197d8",
+            var map_cb63f9cb0bd3c7abe6727708af96feb5 = L.map(
+                "map_cb63f9cb0bd3c7abe6727708af96feb5",
                 {
                     center: [-27.5954, -48.548],
                     crs: L.CRS.EPSG3857,
@@ -83,12 +158,12 @@
 
         
     
-            var tile_layer_116e5dc8b5df5b64a0a866941570c52c = L.tileLayer(
+            var tile_layer_9d48ca02d74528baa6fb16bb4a84c656 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
-  "minZoom": 0,
-  "maxZoom": 19,
-  "maxNativeZoom": 19,
+  "minZoom": 10,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
   "noWrap": false,
   "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
   "subdomains": "abc",
@@ -100,31 +175,291 @@
             );
         
     
-            tile_layer_116e5dc8b5df5b64a0a866941570c52c.addTo(map_1cfef08efc27bcf3caf1199543d197d8);
+            tile_layer_9d48ca02d74528baa6fb16bb4a84c656.addTo(map_cb63f9cb0bd3c7abe6727708af96feb5);
         
     
-            var marker_389aebc4ccf6a1aff37133f7b41552f1 = L.marker(
-                [-27.5954, -48.548],
+            var feature_group_c027fc055afbbdc234a5f01757ad931e = L.featureGroup(
                 {
 }
-            ).addTo(map_1cfef08efc27bcf3caf1199543d197d8);
+            );
         
     
-        var popup_00ea11d2ddf4f3da36fa97fd266d82c5 = L.popup({
-  "maxWidth": "100%",
+            var marker_e646a6bd64159e6a48d74fce910dd8d4 = L.marker(
+                [-27.4305001, -48.4659858],
+                {
+}
+            ).addTo(feature_group_c027fc055afbbdc234a5f01757ad931e);
+        
+    
+            var div_icon_7fce8fd6adb0de2d007ace3e349b9ae7 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"background:#1f77b4;width:20px;height:20px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3);transform:translate(-10px,-10px);\"\u003e\u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+        var popup_9a9aba18b62ac0fd6e96c576319878a4 = L.popup({
+  "maxWidth": 300,
 });
 
         
             
-                var html_adfa818b24ab3f4485681f209f24a91a = $(`<div id="html_adfa818b24ab3f4485681f209f24a91a" style="width: 100.0%; height: 100.0%;">Centro de Florianópolis</div>`)[0];
-                popup_00ea11d2ddf4f3da36fa97fd266d82c5.setContent(html_adfa818b24ab3f4485681f209f24a91a);
+                var html_0834d5bb77844ab1be332ec3ce67663f = $(`<div id="html_0834d5bb77844ab1be332ec3ce67663f" style="width: 100.0%; height: 100.0%;">             <div style="width:250px; font-family:Arial, sans-serif;">                 <h4 style="margin:0 0 8px 0; color:#2c3e50; font-size:14px;">Casa</h4>                 <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400" width="230" height="150" style="border-radius:3px; margin-bottom:8px; object-fit:cover;">                 <p style="margin:3px 0; font-size:12px;"><strong>Endereço:</strong> Rua das Flores, 100, Florianópolis</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Área:</strong> 200m²</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Quartos:</strong> 3</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Banheiros:</strong> 2</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Vagas:</strong> 2</p>                 <p style="margin:3px 0; font-size:14px; color:#e74c3c;"><strong>Valor:</strong> R$ 550.000</p>                 <p style="margin:6px 0; font-style:italic; color:#7f8c8d; font-size:11px;">Linda casa com jardim e garagem</p>                 <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse em Casa - Rua das Flores, 100, Florianópolis')" style="background:#3498db; color:white; border:none; padding:6px 12px; border-radius:3px; cursor:pointer; font-size:11px;">📧 Contato</button>             </div>             </div>`)[0];
+                popup_9a9aba18b62ac0fd6e96c576319878a4.setContent(html_0834d5bb77844ab1be332ec3ce67663f);
             
         
 
-        marker_389aebc4ccf6a1aff37133f7b41552f1.bindPopup(popup_00ea11d2ddf4f3da36fa97fd266d82c5)
+        marker_e646a6bd64159e6a48d74fce910dd8d4.bindPopup(popup_9a9aba18b62ac0fd6e96c576319878a4)
         ;
 
         
     
+    
+            marker_e646a6bd64159e6a48d74fce910dd8d4.bindTooltip(
+                `<div>
+                     Casa - R$ 550.000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e646a6bd64159e6a48d74fce910dd8d4.setIcon(div_icon_7fce8fd6adb0de2d007ace3e349b9ae7);
+            
+    
+            feature_group_c027fc055afbbdc234a5f01757ad931e.addTo(map_cb63f9cb0bd3c7abe6727708af96feb5);
+        
+    
+            var feature_group_592454a72f71227ce72971d9fc7f7f41 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_d6f1389f3497df04b8c10c7dba3f444d = L.marker(
+                [-27.6022875, -48.602054],
+                {
+}
+            ).addTo(feature_group_592454a72f71227ce72971d9fc7f7f41);
+        
+    
+            var div_icon_f23ad72f4858c970291a84ac2ef11232 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"background:#2ca02c;width:20px;height:20px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3);transform:translate(-10px,-10px);\"\u003e\u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+        var popup_bdab2a1d6300a9a28d7939f80661f1ff = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bd81168a9e57c23bb9f54e4ea5b64372 = $(`<div id="html_bd81168a9e57c23bb9f54e4ea5b64372" style="width: 100.0%; height: 100.0%;">             <div style="width:250px; font-family:Arial, sans-serif;">                 <h4 style="margin:0 0 8px 0; color:#2c3e50; font-size:14px;">Apartamento</h4>                 <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400" width="230" height="150" style="border-radius:3px; margin-bottom:8px; object-fit:cover;">                 <p style="margin:3px 0; font-size:12px;"><strong>Endereço:</strong> Avenida Beira Mar, 500, Florianópolis</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Área:</strong> 70m²</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Quartos:</strong> 2</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Banheiros:</strong> 1</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Vagas:</strong> 1</p>                 <p style="margin:3px 0; font-size:14px; color:#e74c3c;"><strong>Valor:</strong> R$ 300.000</p>                 <p style="margin:6px 0; font-style:italic; color:#7f8c8d; font-size:11px;">Apartamento com vista para o mar</p>                 <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse em Apartamento - Avenida Beira Mar, 500, Florianópolis')" style="background:#3498db; color:white; border:none; padding:6px 12px; border-radius:3px; cursor:pointer; font-size:11px;">📧 Contato</button>             </div>             </div>`)[0];
+                popup_bdab2a1d6300a9a28d7939f80661f1ff.setContent(html_bd81168a9e57c23bb9f54e4ea5b64372);
+            
+        
+
+        marker_d6f1389f3497df04b8c10c7dba3f444d.bindPopup(popup_bdab2a1d6300a9a28d7939f80661f1ff)
+        ;
+
+        
+    
+    
+            marker_d6f1389f3497df04b8c10c7dba3f444d.bindTooltip(
+                `<div>
+                     Apartamento - R$ 300.000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d6f1389f3497df04b8c10c7dba3f444d.setIcon(div_icon_f23ad72f4858c970291a84ac2ef11232);
+            
+    
+            feature_group_592454a72f71227ce72971d9fc7f7f41.addTo(map_cb63f9cb0bd3c7abe6727708af96feb5);
+        
+    
+            var feature_group_6efa89825f0b19c3dcc2af002127a46c = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_b303a8dca2c7a6fede10aee21c8f820a = L.marker(
+                [-27.5206238, -48.7637477],
+                {
+}
+            ).addTo(feature_group_6efa89825f0b19c3dcc2af002127a46c);
+        
+    
+            var div_icon_8196291343d4630d9b836b9c7e389b76 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"background:#ff7f0e;width:20px;height:20px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3);transform:translate(-10px,-10px);\"\u003e\u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+        var popup_6c924c899104405ad61fd64333112619 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b4ae21696dcbbff76f714843c1d10fbc = $(`<div id="html_b4ae21696dcbbff76f714843c1d10fbc" style="width: 100.0%; height: 100.0%;">             <div style="width:250px; font-family:Arial, sans-serif;">                 <h4 style="margin:0 0 8px 0; color:#2c3e50; font-size:14px;">Sala Comercial</h4>                 <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400" width="230" height="150" style="border-radius:3px; margin-bottom:8px; object-fit:cover;">                 <p style="margin:3px 0; font-size:12px;"><strong>Endereço:</strong> Rua XV de Novembro, 20, Centro, Florianópolis</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Área:</strong> 40m²</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Quartos:</strong> 0</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Banheiros:</strong> 1</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Vagas:</strong> 0</p>                 <p style="margin:3px 0; font-size:14px; color:#e74c3c;"><strong>Valor:</strong> R$ 1.200/mês</p>                 <p style="margin:6px 0; font-style:italic; color:#7f8c8d; font-size:11px;">Sala comercial bem localizada</p>                 <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse em Sala Comercial - Rua XV de Novembro, 20, Centro, Florianópolis')" style="background:#3498db; color:white; border:none; padding:6px 12px; border-radius:3px; cursor:pointer; font-size:11px;">📧 Contato</button>             </div>             </div>`)[0];
+                popup_6c924c899104405ad61fd64333112619.setContent(html_b4ae21696dcbbff76f714843c1d10fbc);
+            
+        
+
+        marker_b303a8dca2c7a6fede10aee21c8f820a.bindPopup(popup_6c924c899104405ad61fd64333112619)
+        ;
+
+        
+    
+    
+            marker_b303a8dca2c7a6fede10aee21c8f820a.bindTooltip(
+                `<div>
+                     Sala Comercial - R$ 1.200/mês
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b303a8dca2c7a6fede10aee21c8f820a.setIcon(div_icon_8196291343d4630d9b836b9c7e389b76);
+            
+    
+            feature_group_6efa89825f0b19c3dcc2af002127a46c.addTo(map_cb63f9cb0bd3c7abe6727708af96feb5);
+        
+    
+            var feature_group_e596d8a09ff7005193f9dd8df7efedd3 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_c41efac0378c333fe8d46b7f6245e56a = L.marker(
+                [-27.5954, -48.548],
+                {
+}
+            ).addTo(feature_group_e596d8a09ff7005193f9dd8df7efedd3);
+        
+    
+            var div_icon_f846b261abc21f904cf3185f0ecb8eb8 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"background:#d62728;width:20px;height:20px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3);transform:translate(-10px,-10px);\"\u003e\u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+        var popup_a688fdb773b4cf896587be5ab16c62d6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e281556a807fe1691d127414a4abf139 = $(`<div id="html_e281556a807fe1691d127414a4abf139" style="width: 100.0%; height: 100.0%;">             <div style="width:250px; font-family:Arial, sans-serif;">                 <h4 style="margin:0 0 8px 0; color:#2c3e50; font-size:14px;">Terreno</h4>                 <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400" width="230" height="150" style="border-radius:3px; margin-bottom:8px; object-fit:cover;">                 <p style="margin:3px 0; font-size:12px;"><strong>Endereço:</strong> Estrada Geral, Ratones, Florianópolis</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Área:</strong> 500m²</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Quartos:</strong> 0</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Banheiros:</strong> 0</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Vagas:</strong> 0</p>                 <p style="margin:3px 0; font-size:14px; color:#e74c3c;"><strong>Valor:</strong> R$ 150.000</p>                 <p style="margin:6px 0; font-style:italic; color:#7f8c8d; font-size:11px;">Terreno plano para construção</p>                 <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse em Terreno - Estrada Geral, Ratones, Florianópolis')" style="background:#3498db; color:white; border:none; padding:6px 12px; border-radius:3px; cursor:pointer; font-size:11px;">📧 Contato</button>             </div>             </div>`)[0];
+                popup_a688fdb773b4cf896587be5ab16c62d6.setContent(html_e281556a807fe1691d127414a4abf139);
+            
+        
+
+        marker_c41efac0378c333fe8d46b7f6245e56a.bindPopup(popup_a688fdb773b4cf896587be5ab16c62d6)
+        ;
+
+        
+    
+    
+            marker_c41efac0378c333fe8d46b7f6245e56a.bindTooltip(
+                `<div>
+                     Terreno - R$ 150.000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c41efac0378c333fe8d46b7f6245e56a.setIcon(div_icon_f846b261abc21f904cf3185f0ecb8eb8);
+            
+    
+            feature_group_e596d8a09ff7005193f9dd8df7efedd3.addTo(map_cb63f9cb0bd3c7abe6727708af96feb5);
+        
+    
+            var feature_group_9d9b1700bb50d60d382ee217af694219 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_2fca7f7794244f5d0de7be2761e827f0 = L.marker(
+                [-27.5401647, -48.5054413],
+                {
+}
+            ).addTo(feature_group_9d9b1700bb50d60d382ee217af694219);
+        
+    
+            var div_icon_12a94a16433b2cf18e16b4560e3c942d = L.divIcon({
+  "html": "\n                \u003cdiv style=\"background:#9467bd;width:20px;height:20px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3);transform:translate(-10px,-10px);\"\u003e\u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+        var popup_7863d15ac3550cdb5d1748cc834e92c5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1e04d00716fdb713a611270f31ac93f4 = $(`<div id="html_1e04d00716fdb713a611270f31ac93f4" style="width: 100.0%; height: 100.0%;">             <div style="width:250px; font-family:Arial, sans-serif;">                 <h4 style="margin:0 0 8px 0; color:#2c3e50; font-size:14px;">Galpão Industrial</h4>                 <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400" width="230" height="150" style="border-radius:3px; margin-bottom:8px; object-fit:cover;">                 <p style="margin:3px 0; font-size:12px;"><strong>Endereço:</strong> Rodovia SC-401, km 5, Florianópolis</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Área:</strong> 600m²</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Quartos:</strong> 0</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Banheiros:</strong> 2</p>                 <p style="margin:3px 0; font-size:12px;"><strong>Vagas:</strong> 5</p>                 <p style="margin:3px 0; font-size:14px; color:#e74c3c;"><strong>Valor:</strong> R$ 850.000</p>                 <p style="margin:6px 0; font-style:italic; color:#7f8c8d; font-size:11px;">Galpão industrial com doca</p>                 <button onclick="window.open('mailto:contato@olokunimoveis.com.br?subject=Interesse em Galpão Industrial - Rodovia SC-401, km 5, Florianópolis')" style="background:#3498db; color:white; border:none; padding:6px 12px; border-radius:3px; cursor:pointer; font-size:11px;">📧 Contato</button>             </div>             </div>`)[0];
+                popup_7863d15ac3550cdb5d1748cc834e92c5.setContent(html_1e04d00716fdb713a611270f31ac93f4);
+            
+        
+
+        marker_2fca7f7794244f5d0de7be2761e827f0.bindPopup(popup_7863d15ac3550cdb5d1748cc834e92c5)
+        ;
+
+        
+    
+    
+            marker_2fca7f7794244f5d0de7be2761e827f0.bindTooltip(
+                `<div>
+                     Galpão Industrial - R$ 850.000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2fca7f7794244f5d0de7be2761e827f0.setIcon(div_icon_12a94a16433b2cf18e16b4560e3c942d);
+            
+    
+            feature_group_9d9b1700bb50d60d382ee217af694219.addTo(map_cb63f9cb0bd3c7abe6727708af96feb5);
+        
+    
+            var layer_control_efe3daedeed6e8bb6035ad8282b62049_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_9d48ca02d74528baa6fb16bb4a84c656,
+                },
+                overlays :  {
+                    "Casa" : feature_group_c027fc055afbbdc234a5f01757ad931e,
+                    "Apartamento" : feature_group_592454a72f71227ce72971d9fc7f7f41,
+                    "Sala Comercial" : feature_group_6efa89825f0b19c3dcc2af002127a46c,
+                    "Terreno" : feature_group_e596d8a09ff7005193f9dd8df7efedd3,
+                    "Galp\u00e3o Industrial" : feature_group_9d9b1700bb50d60d382ee217af694219,
+                },
+            };
+            let layer_control_efe3daedeed6e8bb6035ad8282b62049 = L.control.layers(
+                layer_control_efe3daedeed6e8bb6035ad8282b62049_layers.base_layers,
+                layer_control_efe3daedeed6e8bb6035ad8282b62049_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_cb63f9cb0bd3c7abe6727708af96feb5);
+
+        
 </script>
 </html>
